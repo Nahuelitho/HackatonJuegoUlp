@@ -1,0 +1,275 @@
+[gd_scene format=3 uid="uid://cnrgtwq61001v"]
+
+[ext_resource type="PackedScene" path="res://scenes/jugador.tscn" id="1_jugador"]
+[ext_resource type="PackedScene" path="res://scenes/muro_ladrillo.tscn" id="2_ladrillo"]
+[ext_resource type="PackedScene" path="res://scenes/muro_acero.tscn" id="3_acero"]
+[ext_resource type="PackedScene" path="res://scenes/menu_pausa.tscn" id="4_pausa"]
+[ext_resource type="PackedScene" path="res://scenes/enemigo.tscn" id="5_enemigo"]
+[ext_resource type="Script" path="res://scripts/nivel_prueba.gd" id="6_nivel"]
+[ext_resource type="Texture2D" path="res://assets/bonus/HealthUI.png" id="7_health"]
+[ext_resource type="Texture2D" path="res://assets/touch/Up.png" id="8_up"]
+[ext_resource type="Texture2D" path="res://assets/touch/Down.png" id="9_down"]
+[ext_resource type="Texture2D" path="res://assets/touch/Left.png" id="10_left"]
+[ext_resource type="Texture2D" path="res://assets/touch/Right.png" id="11_right"]
+[ext_resource type="Texture2D" path="res://assets/bonus/objetivo-del-arma.png" id="12_fire"]
+
+[sub_resource type="RectangleShape2D" id="Shape_horizontal"]
+size = Vector2(640, 20)
+
+[sub_resource type="RectangleShape2D" id="Shape_vertical"]
+size = Vector2(20, 640)
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 24
+font_color = Color(0.95, 0.95, 0.95, 1)
+
+[sub_resource type="RectangleShape2D" id="Shape_touch"]
+size = Vector2(82, 82)
+
+[sub_resource type="LabelSettings" id="LabelSettings_control"]
+font_size = 26
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="Atlas_heart"]
+atlas = ExtResource("7_health")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="Atlas_up"]
+atlas = ExtResource("8_up")
+region = Rect2(190, 0, 250, 188)
+
+[sub_resource type="AtlasTexture" id="Atlas_down"]
+atlas = ExtResource("9_down")
+region = Rect2(190, 440, 250, 188)
+
+[sub_resource type="AtlasTexture" id="Atlas_left"]
+atlas = ExtResource("10_left")
+region = Rect2(0, 190, 188, 250)
+
+[sub_resource type="AtlasTexture" id="Atlas_right"]
+atlas = ExtResource("11_right")
+region = Rect2(440, 190, 188, 250)
+
+[node name="NivelPrueba" type="Node2D" unique_id=1950693228]
+script = ExtResource("6_nivel")
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=1874271658]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0.035, 0.04, 0.05, 1)
+
+[node name="Arena" type="ColorRect" parent="." unique_id=504392430]
+offset_left = 320.0
+offset_top = 40.0
+offset_right = 960.0
+offset_bottom = 680.0
+mouse_filter = 2
+color = Color(0.005, 0.007, 0.01, 1)
+
+[node name="Limites" type="Node2D" parent="." unique_id=17373522]
+
+[node name="Superior" type="StaticBody2D" parent="Limites" unique_id=135074540]
+position = Vector2(640, 40)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limites/Superior" unique_id=357547758]
+shape = SubResource("Shape_horizontal")
+
+[node name="Inferior" type="StaticBody2D" parent="Limites" unique_id=844633979]
+position = Vector2(640, 680)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limites/Inferior" unique_id=1771535710]
+shape = SubResource("Shape_horizontal")
+
+[node name="Izquierdo" type="StaticBody2D" parent="Limites" unique_id=1620857514]
+position = Vector2(320, 360)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limites/Izquierdo" unique_id=1783267265]
+shape = SubResource("Shape_vertical")
+
+[node name="Derecho" type="StaticBody2D" parent="Limites" unique_id=66205666]
+position = Vector2(960, 360)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limites/Derecho" unique_id=807142843]
+shape = SubResource("Shape_vertical")
+
+[node name="Jugador" parent="." unique_id=129485100 instance=ExtResource("1_jugador")]
+position = Vector2(400, 560)
+
+[node name="EnemigoIzquierda" parent="." unique_id=59568880 instance=ExtResource("5_enemigo")]
+position = Vector2(400, 120)
+
+[node name="EnemigoCentro" parent="." instance=ExtResource("5_enemigo")]
+position = Vector2(640, 120)
+
+[node name="EnemigoDerecha" parent="." instance=ExtResource("5_enemigo")]
+position = Vector2(880, 120)
+
+[node name="Muros" type="Node2D" parent="." unique_id=1456570383]
+
+[node name="EspacioAguila" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(620, 608, 660, 608, 660, 648, 620, 648)
+color = Color(0.72, 0.5, 0.08, 1)
+
+[node name="Texto" type="Label" parent="EspacioAguila"]
+offset_left = 620.0
+offset_top = 616.0
+offset_right = 660.0
+offset_bottom = 641.0
+text = "BASE"
+horizontal_alignment = 1
+
+[node name="Interfaz" type="CanvasLayer" parent="." unique_id=1175431969]
+
+[node name="VidaTexto" type="Label" parent="Interfaz"]
+offset_left = 28.0
+offset_top = 78.0
+offset_right = 100.0
+offset_bottom = 108.0
+text = "VIDA"
+label_settings = SubResource("LabelSettings_title")
+
+[node name="Corazon1" type="TextureRect" parent="Interfaz"]
+offset_left = 30.0
+offset_top = 112.0
+offset_right = 62.0
+offset_bottom = 144.0
+texture_filter = 1
+texture = SubResource("Atlas_heart")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Corazon2" type="TextureRect" parent="Interfaz"]
+offset_left = 70.0
+offset_top = 112.0
+offset_right = 102.0
+offset_bottom = 144.0
+texture_filter = 1
+texture = SubResource("Atlas_heart")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Titulo" type="Label" parent="Interfaz" unique_id=2038512179]
+offset_left = 28.0
+offset_top = 25.0
+offset_right = 250.0
+offset_bottom = 60.0
+text = "ETAPA 2 - MUROS"
+label_settings = SubResource("LabelSettings_title")
+
+[node name="Ayuda" type="Label" parent="Interfaz" unique_id=719543868]
+offset_left = 998.0
+offset_top = 30.0
+offset_right = 1255.0
+offset_bottom = 90.0
+text = "Ladrillo: rompible
+Acero: resistente"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+
+[node name="Arriba" type="TouchScreenButton" parent="Interfaz" unique_id=110190149]
+position = Vector2(160, 430)
+shape = SubResource("Shape_touch")
+action = "mover_arriba"
+visibility_mode = 1
+
+[node name="Fondo" type="Sprite2D" parent="Interfaz/Arriba" unique_id=1951538717]
+texture = SubResource("Atlas_up")
+scale = Vector2(0.42, 0.42)
+
+[node name="Texto" type="Label" parent="Interfaz/Arriba" unique_id=2003940166]
+visible = false
+offset_left = -40.0
+offset_top = -21.0
+offset_right = 40.0
+offset_bottom = 21.0
+text = "UP"
+label_settings = SubResource("LabelSettings_control")
+horizontal_alignment = 1
+
+[node name="Abajo" type="TouchScreenButton" parent="Interfaz" unique_id=1707325390]
+position = Vector2(160, 610)
+shape = SubResource("Shape_touch")
+action = "mover_abajo"
+visibility_mode = 1
+
+[node name="Fondo" type="Sprite2D" parent="Interfaz/Abajo" unique_id=1216835707]
+texture = SubResource("Atlas_down")
+scale = Vector2(0.42, 0.42)
+
+[node name="Texto" type="Label" parent="Interfaz/Abajo" unique_id=520104621]
+visible = false
+offset_left = -40.0
+offset_top = -21.0
+offset_right = 40.0
+offset_bottom = 21.0
+text = "DOWN"
+label_settings = SubResource("LabelSettings_control")
+horizontal_alignment = 1
+
+[node name="Izquierda" type="TouchScreenButton" parent="Interfaz" unique_id=1918067583]
+position = Vector2(70, 520)
+shape = SubResource("Shape_touch")
+action = "mover_izq"
+visibility_mode = 1
+
+[node name="Fondo" type="Sprite2D" parent="Interfaz/Izquierda" unique_id=11600483]
+texture = SubResource("Atlas_left")
+scale = Vector2(0.42, 0.42)
+
+[node name="Texto" type="Label" parent="Interfaz/Izquierda" unique_id=1179960307]
+visible = false
+offset_left = -40.0
+offset_top = -21.0
+offset_right = 40.0
+offset_bottom = 21.0
+text = "LEFT"
+label_settings = SubResource("LabelSettings_control")
+horizontal_alignment = 1
+
+[node name="Derecha" type="TouchScreenButton" parent="Interfaz" unique_id=413143066]
+position = Vector2(250, 520)
+shape = SubResource("Shape_touch")
+action = "mover_der"
+visibility_mode = 1
+
+[node name="Fondo" type="Sprite2D" parent="Interfaz/Derecha" unique_id=597540994]
+texture = SubResource("Atlas_right")
+scale = Vector2(0.42, 0.42)
+
+[node name="Texto" type="Label" parent="Interfaz/Derecha" unique_id=1884383611]
+visible = false
+offset_left = -40.0
+offset_top = -21.0
+offset_right = 40.0
+offset_bottom = 21.0
+text = "RIGHT"
+label_settings = SubResource("LabelSettings_control")
+horizontal_alignment = 1
+
+[node name="Disparar" type="TouchScreenButton" parent="Interfaz" unique_id=93245893]
+position = Vector2(1120, 545)
+shape = SubResource("Shape_touch")
+action = "disparar"
+visibility_mode = 1
+
+[node name="Fondo" type="Sprite2D" parent="Interfaz/Disparar" unique_id=1203202547]
+texture = ExtResource("12_fire")
+scale = Vector2(0.2, 0.2)
+
+[node name="Texto" type="Label" parent="Interfaz/Disparar" unique_id=1188971885]
+visible = false
+offset_left = -52.0
+offset_top = -21.0
+offset_right = 52.0
+offset_bottom = 21.0
+text = "FIRE"
+label_settings = SubResource("LabelSettings_control")
+horizontal_alignment = 1
+
+[node name="MenuPausa" parent="." unique_id=567257760 instance=ExtResource("4_pausa")]

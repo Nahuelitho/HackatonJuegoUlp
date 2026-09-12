@@ -1,0 +1,357 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://scripts/menu_principal.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/fondo-tank.png" id="2_fondo"]
+
+[sub_resource type="AtlasTexture" id="Atlas_fondo_1"]
+atlas = ExtResource("2_fondo")
+region = Rect2(0, 0, 250, 200)
+
+[sub_resource type="AtlasTexture" id="Atlas_fondo_2"]
+atlas = ExtResource("2_fondo")
+region = Rect2(250, 0, 250, 200)
+
+[sub_resource type="SpriteFrames" id="Frames_fondo"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": SubResource("Atlas_fondo_1")}, {"duration": 1.0, "texture": SubResource("Atlas_fondo_2")}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="Style_title"]
+bg_color = Color(0.34, 0.22, 0.025, 0.96)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.65)
+shadow_size = 10
+
+[sub_resource type="LabelSettings" id="Label_title"]
+font_size = 48
+font_color = Color(1, 0.72, 0.08, 1)
+outline_size = 5
+outline_color = Color(1, 1, 1, 1)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 0.8)
+
+[sub_resource type="StyleBoxFlat" id="Style_button_normal"]
+bg_color = Color(0.08, 0.095, 0.12, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.91, 0.67, 0.15, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="Style_button_hover"]
+bg_color = Color(0.32, 0.22, 0.06, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.82, 0.33, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="Style_button_pressed"]
+bg_color = Color(0.55, 0.36, 0.04, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="Style_options"]
+bg_color = Color(0.025, 0.03, 0.045, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.95, 0.7, 0.18, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.8)
+shadow_size = 16
+
+[sub_resource type="LabelSettings" id="Label_options_title"]
+font_size = 32
+font_color = Color(1, 0.76, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="Style_panel_hint"]
+bg_color = Color(0.02, 0.025, 0.035, 0.82)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.2)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MenuPrincipal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="FondoColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.025, 0.03, 0.045, 1)
+mouse_filter = 2
+
+[node name="FondoImagen" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TanqueAnimado" type="AnimatedSprite2D" parent="."]
+position = Vector2(920, 385)
+sprite_frames = SubResource("Frames_fondo")
+autoplay = "default"
+frame_progress = 0.35
+scale = Vector2(2.15, 2.15)
+
+[node name="OscurecerFondo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3)
+mouse_filter = 2
+
+[node name="Contenido" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 78.0
+offset_right = 560.0
+offset_bottom = 650.0
+theme_override_constants/separation = 13
+
+[node name="CartelTitulo" type="PanelContainer" parent="Contenido"]
+custom_minimum_size = Vector2(450, 112)
+layout_mode = 2
+theme_override_styles/panel = SubResource("Style_title")
+
+[node name="Margen" type="MarginContainer" parent="Contenido/CartelTitulo"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 12
+
+[node name="Titulo" type="Label" parent="Contenido/CartelTitulo/Margen"]
+layout_mode = 2
+text = "GOLDEN DOGS"
+label_settings = SubResource("Label_title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Separador" type="Control" parent="Contenido"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Iniciar" type="Button" parent="Contenido"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.84, 0.38, 1)
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("Style_button_normal")
+theme_override_styles/hover = SubResource("Style_button_hover")
+theme_override_styles/pressed = SubResource("Style_button_pressed")
+text = "INICIAR JUEGO"
+
+[node name="Niveles" type="Button" parent="Contenido"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.84, 0.38, 1)
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("Style_button_normal")
+theme_override_styles/hover = SubResource("Style_button_hover")
+theme_override_styles/pressed = SubResource("Style_button_pressed")
+text = "NIVELES"
+
+[node name="Opciones" type="Button" parent="Contenido"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.84, 0.38, 1)
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("Style_button_normal")
+theme_override_styles/hover = SubResource("Style_button_hover")
+theme_override_styles/pressed = SubResource("Style_button_pressed")
+text = "OPCIONES"
+
+[node name="Salir" type="Button" parent="Contenido"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.84, 0.38, 1)
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("Style_button_normal")
+theme_override_styles/hover = SubResource("Style_button_hover")
+theme_override_styles/pressed = SubResource("Style_button_pressed")
+text = "SALIR"
+
+[node name="PanelOpciones" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 390.0
+offset_top = 170.0
+offset_right = 890.0
+offset_bottom = 550.0
+theme_override_styles/panel = SubResource("Style_options")
+
+[node name="Margen" type="MarginContainer" parent="PanelOpciones"]
+layout_mode = 2
+theme_override_constants/margin_left = 38
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 38
+theme_override_constants/margin_bottom = 30
+
+[node name="Opciones" type="VBoxContainer" parent="PanelOpciones/Margen"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Titulo" type="Label" parent="PanelOpciones/Margen/Opciones"]
+layout_mode = 2
+text = "OPCIONES"
+label_settings = SubResource("Label_options_title")
+horizontal_alignment = 1
+
+[node name="EtiquetaVolumen" type="Label" parent="PanelOpciones/Margen/Opciones"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Volumen general"
+
+[node name="Volumen" type="HSlider" parent="PanelOpciones/Margen/Opciones"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+value = 80.0
+
+[node name="Silencio" type="CheckButton" parent="PanelOpciones/Margen/Opciones"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Silenciar audio"
+
+[node name="Nota" type="Label" parent="PanelOpciones/Margen/Opciones"]
+layout_mode = 2
+text = "Mas opciones se agregaran solo si el MVP las necesita."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Cerrar" type="Button" parent="PanelOpciones/Margen/Opciones"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("Style_button_normal")
+theme_override_styles/hover = SubResource("Style_button_hover")
+theme_override_styles/pressed = SubResource("Style_button_pressed")
+text = "VOLVER"
+
+[node name="PanelNiveles" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 390.0
+offset_top = 145.0
+offset_right = 890.0
+offset_bottom = 575.0
+theme_override_styles/panel = SubResource("Style_options")
+
+[node name="Margen" type="MarginContainer" parent="PanelNiveles"]
+layout_mode = 2
+theme_override_constants/margin_left = 38
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 38
+theme_override_constants/margin_bottom = 28
+
+[node name="Niveles" type="VBoxContainer" parent="PanelNiveles/Margen"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Titulo" type="Label" parent="PanelNiveles/Margen/Niveles"]
+layout_mode = 2
+text = "SELECCIONAR NIVEL"
+label_settings = SubResource("Label_options_title")
+horizontal_alignment = 1
+
+[node name="Facil" type="Button" parent="PanelNiveles/Margen/Niveles"]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("Style_button_normal")
+theme_override_styles/hover = SubResource("Style_button_hover")
+theme_override_styles/pressed = SubResource("Style_button_pressed")
+text = "MAPA FACIL"
+
+[node name="Medio" type="Button" parent="PanelNiveles/Margen/Niveles"]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+disabled = true
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("Style_button_normal")
+text = "MAPA MEDIO - PROXIMAMENTE"
+
+[node name="Dificil" type="Button" parent="PanelNiveles/Margen/Niveles"]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+disabled = true
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("Style_button_normal")
+text = "MAPA DIFICIL - PROXIMAMENTE"
+
+[node name="Cerrar" type="Button" parent="PanelNiveles/Margen/Niveles"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("Style_button_normal")
+theme_override_styles/hover = SubResource("Style_button_hover")
+theme_override_styles/pressed = SubResource("Style_button_pressed")
+text = "VOLVER"
+
+[connection signal="pressed" from="Contenido/Iniciar" to="." method="_on_iniciar_pressed"]
+[connection signal="pressed" from="Contenido/Niveles" to="." method="_on_niveles_pressed"]
+[connection signal="pressed" from="Contenido/Opciones" to="." method="_on_opciones_pressed"]
+[connection signal="pressed" from="Contenido/Salir" to="." method="_on_salir_pressed"]
+[connection signal="value_changed" from="PanelOpciones/Margen/Opciones/Volumen" to="." method="_on_volumen_value_changed"]
+[connection signal="toggled" from="PanelOpciones/Margen/Opciones/Silencio" to="." method="_on_silencio_toggled"]
+[connection signal="pressed" from="PanelOpciones/Margen/Opciones/Cerrar" to="." method="_on_cerrar_opciones_pressed"]
+[connection signal="pressed" from="PanelNiveles/Margen/Niveles/Facil" to="." method="_on_nivel_facil_pressed"]
+[connection signal="pressed" from="PanelNiveles/Margen/Niveles/Cerrar" to="." method="_on_cerrar_niveles_pressed"]

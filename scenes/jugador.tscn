@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/jugador.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/tanques/tanque_jugador.png" id="2_texture"]
+[ext_resource type="PackedScene" path="res://scenes/bala.tscn" id="3_bala"]
+[ext_resource type="AudioStream" path="res://assets/audio/efectos/arcade-explosion-shot-sound-fx_74bpm_A#_minor.wav" id="4_disparo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jugador"]
+size = Vector2(20, 38)
+
+[node name="Jugador" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_script")
+prefab_bala = ExtResource("3_bala")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_texture")
+scale = Vector2(1.5, 1.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jugador")
+
+[node name="PuntoDisparo" type="Marker2D" parent="."]
+position = Vector2(0, -32)
+
+[node name="SonidoDisparo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_disparo")
+volume_db = -6.0
+max_distance = 900.0

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemigo.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/tanques/tanque_enemigo.png" id="2_texture"]
+[ext_resource type="PackedScene" path="res://scenes/bala.tscn" id="3_bala"]
+
+[sub_resource type="RectangleShape2D" id="Shape_enemigo"]
+size = Vector2(20, 38)
+
+[node name="Enemigo" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_script")
+prefab_bala = ExtResource("3_bala")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_texture")
+scale = Vector2(1.5, 1.5)
+modulate = Color(1, 0.55, 0.55, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Shape_enemigo")
+
+[node name="PuntoDisparo" type="Marker2D" parent="."]
+position = Vector2(0, -32)

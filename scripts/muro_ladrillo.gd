@@ -1,9 +1,16 @@
 extends StaticBody2D
-# Ladrillo rompible - 1 tiro
 
-func romper_muro(es_de_jugador: bool):
-	# Avisa al gestor para contar
-    	var gestor_bonus = get_node("/root/GestorBonus")
-        	if gestor_bonus:
-            		gestor_bonus.contar_muro_roto(global_position)
-                    	queue_free()
+@export var vida: int = 2
+
+@onready var sprite: Sprite2D = $Sprite2D
+
+func romper_muro(_es_de_jugador: bool, arma_mejorada: bool = false) -> void:
+	vida -= 2 if arma_mejorada else 1
+	if vida > 0:
+		sprite.modulate = Color(0.72, 0.55, 0.55, 1.0)
+		return
+
+	var gestor_bonus = get_node_or_null("/root/GestorBonus")
+	if gestor_bonus:
+		gestor_bonus.contar_muro_roto(global_position)
+	queue_free()
