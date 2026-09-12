@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+signal vida_cambiada(vida_actual: int)
+
+const EXPLOSION = preload("res://scenes/explosion.tscn")
+
 @export var vida: int = 2
 @export var velocidad: float = 200.0
 @export var cadencia: float = 0.35
@@ -10,6 +14,7 @@ extends CharacterBody2D
 @onready var punto_disparo: Marker2D = $PuntoDisparo
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var sonido_disparo: AudioStreamPlayer2D = $SonidoDisparo
+@onready var sonido_impacto: AudioStreamPlayer2D = $SonidoImpacto
 
 var direccion_actual: Vector2 = Vector2.UP
 var tiempo_proximo_disparo: float = 0.0
@@ -18,6 +23,7 @@ var esta_muerto: bool = false
 
 func _ready() -> void:
 	add_to_group("jugador")
+	vida_cambiada.emit(vida)
 
 func _physics_process(_delta: float) -> void:
 	mover()
@@ -66,17 +72,27 @@ func recibir_danio(cantidad: int = 1) -> void:
 	if esta_muerto:
 		return
 	vida -= cantidad
+	vida_cambiada.emit(maxi(vida, 0))
 	if vida <= 0:
 		esta_muerto = true
+		crear_explosion()
 		var gestor_juego = get_node_or_null("/root/GestorJuego")
 		if gestor_juego:
 			gestor_juego.jugador_murio()
 		queue_free()
+	else:
+		sonido_impacto.play()
+
+func crear_explosion() -> void:
+	var explosion = EXPLOSION.instantiate()
+	get_tree().current_scene.add_child(explosion)
+	explosion.global_position = global_position
 
 func aplicar_bonus(tipo: String) -> void:
 	match tipo:
 		"vida_extra":
-			vida += 1
+			vida = mini(vida + 1, 2)
+			vida_cambiada.emit(vida)
 		"arma_mejorada":
 			potencia_bala = 2
 		"escudo":

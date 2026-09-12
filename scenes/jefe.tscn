@@ -5,28 +5,35 @@
 [ext_resource type="PackedScene" path="res://scenes/bala.tscn" id="3_bala"]
 [ext_resource type="AudioStream" path="res://assets/audio/efectos/explosion-drop-sound-fx.wav" id="4_impacto"]
 
-[sub_resource type="RectangleShape2D" id="Shape_enemigo"]
-size = Vector2(20, 38)
+[sub_resource type="RectangleShape2D" id="Shape_jefe"]
+size = Vector2(30, 54)
 
-[node name="Enemigo" type="CharacterBody2D"]
+[node name="Jefe" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_script")
+vida = 6
+velocidad = 65.0
+intervalo_disparo_min = 2.0
+intervalo_disparo_max = 4.0
+potencia_bala = 2
+danio_contacto = 2
+es_jefe = true
 prefab_bala = ExtResource("3_bala")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_texture")
-scale = Vector2(1.5, 1.5)
-modulate = Color(1, 0.55, 0.55, 1)
+scale = Vector2(2.2, 2.2)
+modulate = Color(1, 0.78, 0.18, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("Shape_enemigo")
+shape = SubResource("Shape_jefe")
 
 [node name="PuntoDisparo" type="Marker2D" parent="."]
-position = Vector2(0, -32)
+position = Vector2(0, -44)
 
 [node name="SonidoImpacto" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_impacto")
-volume_db = -10.0
-max_distance = 900.0
+volume_db = -8.0
+max_distance = 1000.0

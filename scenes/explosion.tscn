@@ -1,0 +1,49 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/explosion.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/bonus/explosion.png" id="2_texture"]
+[ext_resource type="AudioStream" path="res://assets/audio/efectos/explosion-sound-fx-smoothed_133bpm_A_minor.wav" id="3_audio"]
+
+[sub_resource type="AtlasTexture" id="Frame_0"]
+atlas = ExtResource("2_texture")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="Frame_1"]
+atlas = ExtResource("2_texture")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="Frame_2"]
+atlas = ExtResource("2_texture")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="Frame_3"]
+atlas = ExtResource("2_texture")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="Frame_4"]
+atlas = ExtResource("2_texture")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="Frame_5"]
+atlas = ExtResource("2_texture")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="Frames_explosion"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": SubResource("Frame_0")}, {"duration": 1.0, "texture": SubResource("Frame_1")}, {"duration": 1.0, "texture": SubResource("Frame_2")}, {"duration": 1.0, "texture": SubResource("Frame_3")}, {"duration": 1.0, "texture": SubResource("Frame_4")}, {"duration": 1.0, "texture": SubResource("Frame_5")}],
+"loop": false,
+"name": &"explotar",
+"speed": 14.0
+}]
+
+[node name="Explosion" type="AnimatedSprite2D"]
+texture_filter = 1
+sprite_frames = SubResource("Frames_explosion")
+animation = &"explotar"
+scale = Vector2(2.2, 2.2)
+script = ExtResource("1_script")
+
+[node name="Sonido" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_audio")
+volume_db = -5.0
+max_distance = 1000.0

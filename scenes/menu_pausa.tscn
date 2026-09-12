@@ -1,6 +1,13 @@
 [gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/menu_pausa.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/escenario/muro_ladrillo.png" id="2_ladrillo"]
+[ext_resource type="Texture2D" path="res://assets/escenario/muro_acero.png" id="3_acero"]
+[ext_resource type="Texture2D" path="res://assets/tanques/tanque_enemigo.png" id="4_enemigo"]
+
+[sub_resource type="AtlasTexture" id="Atlas_enemigo"]
+atlas = ExtResource("4_enemigo")
+region = Rect2(38, 25, 24, 50)
 
 [sub_resource type="StyleBoxFlat" id="Style_panel"]
 bg_color = Color(0.025, 0.03, 0.045, 0.98)
@@ -60,10 +67,10 @@ color = Color(0, 0, 0, 0.72)
 
 [node name="Panel" type="PanelContainer" parent="CapaPausa"]
 layout_mode = 0
-offset_left = 415.0
-offset_top = 120.0
-offset_right = 865.0
-offset_bottom = 610.0
+offset_left = 360.0
+offset_top = 70.0
+offset_right = 920.0
+offset_bottom = 650.0
 theme_override_styles/panel = SubResource("Style_panel")
 
 [node name="Margen" type="MarginContainer" parent="CapaPausa/Panel"]
@@ -105,6 +112,13 @@ theme_override_font_sizes/font_size = 23
 theme_override_styles/normal = SubResource("Style_button")
 text = "OPCIONES"
 
+[node name="Informacion" type="Button" parent="CapaPausa/Panel/Margen/Contenido/Menu"]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("Style_button")
+text = "INFORMACION"
+
 [node name="Inicio" type="Button" parent="CapaPausa/Panel/Margen/Contenido/Menu"]
 custom_minimum_size = Vector2(0, 68)
 layout_mode = 2
@@ -140,10 +154,109 @@ theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("Style_button")
 text = "VOLVER"
 
+[node name="Informacion" type="VBoxContainer" parent="CapaPausa/Panel/Margen/Contenido"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Subtitulo" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.76, 0.2, 1)
+theme_override_font_sizes/font_size = 25
+text = "GUIA DE CAMPO"
+horizontal_alignment = 1
+
+[node name="Ladrillo" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion"]
+custom_minimum_size = Vector2(0, 82)
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Ladrillo"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture = ExtResource("2_ladrillo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Ladrillo"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "LADRILLO\nSe rompe con 2 disparos normales."
+vertical_alignment = 1
+
+[node name="Acero" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion"]
+custom_minimum_size = Vector2(0, 82)
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Acero"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture = ExtResource("3_acero")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Acero"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "ACERO\nResiste disparos normales."
+vertical_alignment = 1
+
+[node name="Enemigo" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion"]
+custom_minimum_size = Vector2(0, 82)
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Enemigo"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture = SubResource("Atlas_enemigo")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 0.55, 0.55, 1)
+
+[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Enemigo"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "TANQUE ENEMIGO\nTiene 2 vidas y causa dano al chocar."
+vertical_alignment = 1
+
+[node name="Jefe" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion"]
+custom_minimum_size = Vector2(0, 82)
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Jefe"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture = SubResource("Atlas_enemigo")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 0.78, 0.18, 1)
+
+[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Jefe"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "JEFE DORADO\nAparece al final, tiene 6 vidas."
+vertical_alignment = 1
+
+[node name="Volver" type="Button" parent="CapaPausa/Panel/Margen/Contenido/Informacion"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("Style_button")
+text = "VOLVER"
+
 [connection signal="pressed" from="BotonPausa" to="." method="_on_pausa_pressed"]
 [connection signal="pressed" from="CapaPausa/Panel/Margen/Contenido/Menu/Continuar" to="." method="_on_continuar_pressed"]
 [connection signal="pressed" from="CapaPausa/Panel/Margen/Contenido/Menu/Opciones" to="." method="_on_opciones_pressed"]
+[connection signal="pressed" from="CapaPausa/Panel/Margen/Contenido/Menu/Informacion" to="." method="_on_informacion_pressed"]
 [connection signal="pressed" from="CapaPausa/Panel/Margen/Contenido/Menu/Inicio" to="." method="_on_inicio_pressed"]
 [connection signal="value_changed" from="CapaPausa/Panel/Margen/Contenido/Opciones/Volumen" to="." method="_on_volumen_value_changed"]
 [connection signal="toggled" from="CapaPausa/Panel/Margen/Contenido/Opciones/Silencio" to="." method="_on_silencio_toggled"]
 [connection signal="pressed" from="CapaPausa/Panel/Margen/Contenido/Opciones/Volver" to="." method="_on_volver_opciones_pressed"]
+[connection signal="pressed" from="CapaPausa/Panel/Margen/Contenido/Informacion/Volver" to="." method="_on_volver_informacion_pressed"]

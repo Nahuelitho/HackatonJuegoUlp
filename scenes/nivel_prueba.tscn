@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" path="res://assets/touch/Left.png" id="10_left"]
 [ext_resource type="Texture2D" path="res://assets/touch/Right.png" id="11_right"]
 [ext_resource type="Texture2D" path="res://assets/bonus/objetivo-del-arma.png" id="12_fire"]
+[ext_resource type="PackedScene" path="res://scenes/base_aguila.tscn" id="13_base"]
 
 [sub_resource type="RectangleShape2D" id="Shape_horizontal"]
 size = Vector2(640, 20)
@@ -112,17 +113,8 @@ position = Vector2(880, 120)
 
 [node name="Muros" type="Node2D" parent="." unique_id=1456570383]
 
-[node name="EspacioAguila" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(620, 608, 660, 608, 660, 648, 620, 648)
-color = Color(0.72, 0.5, 0.08, 1)
-
-[node name="Texto" type="Label" parent="EspacioAguila"]
-offset_left = 620.0
-offset_top = 616.0
-offset_right = 660.0
-offset_bottom = 641.0
-text = "BASE"
-horizontal_alignment = 1
+[node name="BaseAguila" parent="." instance=ExtResource("13_base")]
+position = Vector2(640, 628)
 
 [node name="Interfaz" type="CanvasLayer" parent="." unique_id=1175431969]
 
@@ -154,23 +146,27 @@ texture = SubResource("Atlas_heart")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Titulo" type="Label" parent="Interfaz" unique_id=2038512179]
-offset_left = 28.0
-offset_top = 25.0
-offset_right = 250.0
-offset_bottom = 60.0
-text = "ETAPA 2 - MUROS"
-label_settings = SubResource("LabelSettings_title")
-
-[node name="Ayuda" type="Label" parent="Interfaz" unique_id=719543868]
-offset_left = 998.0
-offset_top = 30.0
-offset_right = 1255.0
-offset_bottom = 90.0
-text = "Ladrillo: rompible
-Acero: resistente"
+[node name="Restantes" type="Label" parent="Interfaz"]
+offset_left = 1020.0
+offset_top = 130.0
+offset_right = 1245.0
+offset_bottom = 165.0
+text = "ENEMIGOS: 10"
 label_settings = SubResource("LabelSettings_title")
 horizontal_alignment = 1
+
+[node name="ContadorTanques" type="GridContainer" parent="Interfaz"]
+offset_left = 1035.0
+offset_top = 175.0
+offset_right = 1225.0
+offset_bottom = 285.0
+columns = 5
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+
+[node name="Cruceta" type="Sprite2D" parent="Interfaz"]
+position = Vector2(160, 520)
+scale = Vector2(0.3, 0.3)
 
 [node name="Arriba" type="TouchScreenButton" parent="Interfaz" unique_id=110190149]
 position = Vector2(160, 430)
@@ -179,6 +175,7 @@ action = "mover_arriba"
 visibility_mode = 1
 
 [node name="Fondo" type="Sprite2D" parent="Interfaz/Arriba" unique_id=1951538717]
+visible = false
 texture = SubResource("Atlas_up")
 scale = Vector2(0.42, 0.42)
 
@@ -199,6 +196,7 @@ action = "mover_abajo"
 visibility_mode = 1
 
 [node name="Fondo" type="Sprite2D" parent="Interfaz/Abajo" unique_id=1216835707]
+visible = false
 texture = SubResource("Atlas_down")
 scale = Vector2(0.42, 0.42)
 
@@ -219,6 +217,7 @@ action = "mover_izq"
 visibility_mode = 1
 
 [node name="Fondo" type="Sprite2D" parent="Interfaz/Izquierda" unique_id=11600483]
+visible = false
 texture = SubResource("Atlas_left")
 scale = Vector2(0.42, 0.42)
 
@@ -239,6 +238,7 @@ action = "mover_der"
 visibility_mode = 1
 
 [node name="Fondo" type="Sprite2D" parent="Interfaz/Derecha" unique_id=597540994]
+visible = false
 texture = SubResource("Atlas_right")
 scale = Vector2(0.42, 0.42)
 
@@ -272,4 +272,57 @@ text = "FIRE"
 label_settings = SubResource("LabelSettings_control")
 horizontal_alignment = 1
 
+[node name="Resultado" type="Control" parent="Interfaz"]
+visible = false
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Oscurecer" type="ColorRect" parent="Interfaz/Resultado"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78)
+
+[node name="Panel" type="PanelContainer" parent="Interfaz/Resultado"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 180.0
+offset_right = 850.0
+offset_bottom = 540.0
+
+[node name="Contenido" type="VBoxContainer" parent="Interfaz/Resultado/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Titulo" type="Label" parent="Interfaz/Resultado/Panel/Contenido"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "VICTORIA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reintentar" type="Button" parent="Interfaz/Resultado/Panel/Contenido"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "REINTENTAR"
+
+[node name="Inicio" type="Button" parent="Interfaz/Resultado/Panel/Contenido"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "VOLVER AL INICIO"
+
 [node name="MenuPausa" parent="." unique_id=567257760 instance=ExtResource("4_pausa")]
+
+[connection signal="pressed" from="Interfaz/Resultado/Panel/Contenido/Reintentar" to="." method="_on_reintentar_pressed"]
+[connection signal="pressed" from="Interfaz/Resultado/Panel/Contenido/Inicio" to="." method="_on_inicio_pressed"]
