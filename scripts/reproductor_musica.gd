@@ -15,6 +15,14 @@ func _ready() -> void:
 func _repetir_musica() -> void:
 	reproductor.play()
 
+func reproducir() -> void:
+	if is_instance_valid(reproductor) and not reproductor.playing:
+		reproductor.play()
+
+func detener() -> void:
+	if is_instance_valid(reproductor):
+		reproductor.stop()
+
 func _exit_tree() -> void:
 	if is_instance_valid(reproductor):
 		reproductor.stop()

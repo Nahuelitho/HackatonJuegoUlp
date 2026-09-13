@@ -10,7 +10,8 @@ size = Vector2(30, 54)
 
 [node name="Jefe" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 39
+safe_margin = 0.01
 script = ExtResource("1_script")
 vida = 6
 velocidad = 65.0
@@ -25,13 +26,19 @@ prefab_bala = ExtResource("3_bala")
 texture_filter = 1
 texture = ExtResource("2_texture")
 scale = Vector2(2.2, 2.2)
-modulate = Color(1, 0.78, 0.18, 1)
+modulate = Color(1, 0.08, 0.03, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("Shape_jefe")
 
 [node name="PuntoDisparo" type="Marker2D" parent="."]
 position = Vector2(0, -44)
+
+[node name="SensorFrontal" type="RayCast2D" parent="."]
+target_position = Vector2(0, -58)
+collision_mask = 39
+exclude_parent = true
+enabled = true
 
 [node name="SonidoImpacto" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_impacto")

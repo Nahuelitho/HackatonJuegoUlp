@@ -4,9 +4,9 @@ Juego 2D de tanques para Android desarrollado con Godot 4.7.2 durante una hackat
 
 ## Objetivo
 
-El jugador controla un tanque y debe proteger una base fija. La partida termina en derrota si el jugador pierde sus 2 puntos de vida o si cualquier proyectil, incluso uno del jugador, destruye la base.
+El jugador controla un tanque y debe proteger una base fija. La partida termina en derrota si pierde todas sus vidas (3 en facil, 2 en medio y 1 en dificil) o si cualquier proyectil, incluso uno del jugador, destruye la base.
 
-Para ganar hay que eliminar 9 tanques enemigos y luego derrotar al jefe final, que representa el objetivo numero 10.
+Para ganar hay que eliminar todos los tanques del nivel y luego derrotar al jefe final: 10 objetivos en facil, 15 en medio y 20 en dificil.
 
 ## Tecnologia
 
@@ -50,18 +50,28 @@ La carpeta `.godot/` no se versiona; Godot la genera e importa los recursos auto
 
 - `WASD` o flechas para moverse.
 - `Espacio` para disparar.
+- `Escape` para abrir o cerrar la pausa.
+- `Enter` o `Espacio` para avanzar los avisos y dialogos.
 
 ## Reglas actuales
 
-- Jugador: 2 vidas.
+- Jugador: 3 vidas en facil, 2 en medio y 1 en dificil.
 - Enemigo basico: 2 vidas.
-- Jefe: 6 vidas, menor velocidad y disparos de potencia 2.
+- Jefe: 6 vidas, menor velocidad y disparos pesados de potencia 2.
+- El jefe se diferencia con rojo intenso; jugador amarillo y enemigos normales rojos.
 - Colisionar con un enemigo normal causa 1 de daño.
 - Colisionar con el jefe causa 2 de daño.
 - Ladrillo: 2 impactos normales; cambia visualmente después del primero.
-- Acero: resiste disparos normales y se destruye con arma mejorada.
+- Acero interior: resiste disparos normales y solo cede ante el fuego pesado del jefe.
+- Acero de borde: medio bloque completamente irrompible.
+- Agua: bloquea a los tanques, pero permite que las balas pasen por encima.
+- Pasto: se dibuja por encima de los tanques sin bloquearlos.
+- Herramientas cruzadas: recuperan 1 vida hasta el maximo de la dificultad.
+- Escudo: muestra un aura celeste y absorbe el siguiente proyectil enemigo.
+- Los bonus aparecen cada 3 a 7 ladrillos destruidos.
 - Base: 1 impacto de cualquier proyectil produce derrota.
-- Victoria: 9 enemigos básicos y luego el jefe.
+- Victoria: el jefe es siempre el ultimo objetivo; hay 10 objetivos en facil, 15 en medio y 20 en dificil.
+- Victoria y derrota muestran el tiempo activo jugado en formato `mm:ss`, sin sumar las pausas.
 
 ## Estructura
 
@@ -75,17 +85,48 @@ project.godot
 
 Las escenas principales son:
 
+- `scenes/aviso_historico.tscn`: aviso de contexto y ficcionalizacion previo al menu.
 - `scenes/menu_principal.tscn`: inicio, niveles y opciones.
-- `scenes/nivel_prueba.tscn`: nivel jugable actual.
-- `scenes/menu_pausa.tscn`: pausa, informacion y volumen.
+- `scenes/cinematica_inicial.tscn`: dialogo entre Sgt. John y el Cabo antes del nivel facil iniciado desde el botón principal.
+- `scenes/nivel_prueba.tscn`, `nivel_medio.tscn` y `nivel_dificil.tscn`: niveles jugables.
+- `scenes/menu_pausa.tscn`: pausa, reinicio, guia con scroll, opciones y volumen.
 - `scenes/jugador.tscn`, `enemigo.tscn` y `jefe.tscn`: tanques.
 - `scenes/base_aguila.tscn`: objetivo que se debe proteger.
 
+El flujo principal es: aviso historico, menu principal, cinematica inicial, nivel facil y resultado de victoria o derrota. La cinematica permite avanzar cada intervencion o saltar directamente al juego. El selector NIVELES abre la dificultad elegida sin cinematica.
+
+## Edicion del mapa
+
+Cada dificultad tiene un mapa visualmente editable: `scenes/mapa_nivel_facil.tscn`, `scenes/mapa_nivel_medio.tscn` y `scenes/mapa_nivel_dificil.tscn`. Son autonomos: editar uno no modifica los otros. Los tres usan las mismas piezas de medio acero irrompible y esquinas rectas en sus bordes. Todos incluyen una guia visible solo en el editor. El mapa facil incluye una muestra de agua y una de pasto para mover o duplicar. Las piezas disponibles para arrastrar desde el panel **Sistema de archivos** son:
+
+El boton principal `INICIAR JUEGO` reproduce la cinematica antes del nivel facil. La seleccion directa desde `NIVELES` entra al mapa elegido sin repetir la cinematica.
+
+- `scenes/muro_ladrillo.tscn`: ladrillo completo con 2 vidas.
+- `scenes/muro_ladrillo_danado.tscn`: pared ya dañada con 1 vida.
+- `scenes/muro_acero.tscn`: acero completo; la propiedad `rompible` decide si el fuego pesado del jefe puede destruirlo.
+- `scenes/muro_acero_medio_irrompible.tscn`: medio bloque de acero para bordes.
+- `scenes/agua.tscn`: agua que bloquea tanques y deja pasar proyectiles.
+- `scenes/pasto.tscn`: cobertura visual por encima de tanques y proyectiles, sin colision.
+
+Para hacer vertical una pieza de medio acero, cambia su rotacion a `90` grados en el Inspector. No hace falta crear otro PNG: la escena usa solamente la mitad de `muro_acero.png` mediante `region_rect` y ajusta su colision al mismo tamaño.
+
+Los mapas medio y dificil incluyen a la derecha una carpeta `PiezasParaEditar` con una muestra de ladrillo, pared dañada, medio ladrillo, acero, medio acero irrompible, agua y pasto. Esa paleta solo aparece en el editor y se oculta automáticamente al ejecutar.
+
 ## Estado
 
-El proyecto ya incluye menú, controles táctiles, jugador, disparos, muros, enemigos básicos, jefe, base, música, sonidos, explosiones, contador, vida, pausa y pantallas de victoria/derrota.
+El proyecto ya incluye aviso historico, menu, cinematica con dos soldados animados por poses, tres niveles editables, controles tactiles, jugador, disparos, muros, agua, pasto, bonus de vida y escudo, enemigos basicos, jefe, base, musica, sonidos, explosiones, contador, cronometro, pausa y pantallas de victoria/derrota.
 
-Todavía quedan por desarrollar o pulir la IA, bonus, niveles medio/difícil, cinemática, balance, persistencia de opciones y exportación Android.
+Todavía quedan por pulir el balance, la IA en configuraciones extremas, los dialogos adicionales de historia, la persistencia de opciones, las pruebas completas y la exportacion Android.
+
+## Presentacion En Otra PC
+
+1. Instalar o llevar Godot 4.7.2 estable.
+2. Clonar el repositorio o copiar la carpeta completa del proyecto.
+3. Importar `project.godot` y esperar a que Godot termine de importar imágenes, fuentes y sonidos.
+4. Ejecutar con `F5`; la primera escena debe ser el aviso histórico.
+5. Comprobar audio, resolución 1280x720, controles y pantalla completa antes de presentar.
+
+No hace falta copiar la carpeta `.godot/`: se regenera automáticamente. Sí deben subirse todos los archivos nuevos dentro de `assets/`, `scenes/`, `scripts/`, además de `project.godot`, `Readme.md` y `.project_context.md`.
 
 ## Contexto Para IA
 

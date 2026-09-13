@@ -6,7 +6,7 @@ const EXPLOSION = preload("res://scenes/explosion.tscn")
 @export var vida: int = 1
 var destruida: bool = false
 
-func romper_muro(_es_jugador: bool = false, _arma_mejorada: bool = false) -> void:
+func romper_muro(_es_jugador: bool = false, _impacto_fuerte: bool = false) -> void:
 	if destruida:
 		return
 	destruida = true

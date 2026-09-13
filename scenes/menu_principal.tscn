@@ -354,16 +354,18 @@ custom_minimum_size = Vector2(0, 62)
 layout_mode = 2
 theme_override_font_sizes/font_size = 23
 theme_override_styles/normal = SubResource("Style_button_normal")
-disabled = true
-text = "MAPA MEDIO - PROXIMAMENTE"
+theme_override_styles/pressed = SubResource("Style_button_pressed")
+theme_override_styles/hover = SubResource("Style_button_hover")
+text = "MAPA MEDIO"
 
 [node name="Dificil" type="Button" parent="PanelNiveles/Margen/Niveles" unique_id=667710062]
 custom_minimum_size = Vector2(0, 62)
 layout_mode = 2
 theme_override_font_sizes/font_size = 23
 theme_override_styles/normal = SubResource("Style_button_normal")
-disabled = true
-text = "MAPA DIFICIL - PROXIMAMENTE"
+theme_override_styles/pressed = SubResource("Style_button_pressed")
+theme_override_styles/hover = SubResource("Style_button_hover")
+text = "MAPA DIFICIL"
 
 [node name="Cerrar" type="Button" parent="PanelNiveles/Margen/Niveles" unique_id=551923267]
 custom_minimum_size = Vector2(0, 58)
@@ -383,4 +385,6 @@ text = "VOLVER"
 [connection signal="toggled" from="PanelOpciones/Margen/Opciones/Silencio" to="." method="_on_silencio_toggled"]
 [connection signal="pressed" from="PanelOpciones/Margen/Opciones/Cerrar" to="." method="_on_cerrar_opciones_pressed"]
 [connection signal="pressed" from="PanelNiveles/Margen/Niveles/Facil" to="." method="_on_nivel_facil_pressed"]
+[connection signal="pressed" from="PanelNiveles/Margen/Niveles/Medio" to="." method="_on_nivel_medio_pressed"]
+[connection signal="pressed" from="PanelNiveles/Margen/Niveles/Dificil" to="." method="_on_nivel_dificil_pressed"]
 [connection signal="pressed" from="PanelNiveles/Margen/Niveles/Cerrar" to="." method="_on_cerrar_niveles_pressed"]

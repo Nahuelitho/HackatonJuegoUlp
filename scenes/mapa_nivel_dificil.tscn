@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/guia_mapa.gd" id="1_guia"]
+[ext_resource type="PackedScene" path="res://scenes/borde_arena_irrompible.tscn" id="2_borde"]
+[ext_resource type="PackedScene" path="res://scenes/muro_ladrillo.tscn" id="3_ladrillo"]
+[ext_resource type="PackedScene" path="res://scenes/muro_acero.tscn" id="4_acero"]
+[ext_resource type="PackedScene" path="res://scenes/muro_ladrillo_medio.tscn" id="5_medio"]
+[ext_resource type="PackedScene" path="res://scenes/agua.tscn" id="6_agua"]
+[ext_resource type="PackedScene" path="res://scenes/pasto.tscn" id="7_pasto"]
+[ext_resource type="Script" path="res://scripts/paleta_mapa.gd" id="8_paleta"]
+[ext_resource type="PackedScene" path="res://scenes/muro_ladrillo_danado.tscn" id="9_danado"]
+[ext_resource type="PackedScene" path="res://scenes/muro_acero_medio_irrompible.tscn" id="10_acero_medio"]
+
+[node name="MapaNivelDificil" type="Node2D"]
+
+[node name="GuiaEditor" type="Node2D" parent="."]
+z_index = -100
+script = ExtResource("1_guia")
+
+[node name="BordeIrrompible" parent="." instance=ExtResource("2_borde")]
+
+[node name="AceroCentral01" parent="." instance=ExtResource("4_acero")]
+position = Vector2(592, 304)
+[node name="AceroCentral02" parent="." instance=ExtResource("4_acero")]
+position = Vector2(640, 304)
+[node name="AceroCentral03" parent="." instance=ExtResource("4_acero")]
+position = Vector2(688, 304)
+[node name="Ladrillo01" parent="." instance=ExtResource("3_ladrillo")]
+position = Vector2(448, 208)
+[node name="Ladrillo02" parent="." instance=ExtResource("3_ladrillo")]
+position = Vector2(496, 256)
+[node name="Ladrillo03" parent="." instance=ExtResource("3_ladrillo")]
+position = Vector2(544, 352)
+[node name="Ladrillo04" parent="." instance=ExtResource("3_ladrillo")]
+position = Vector2(736, 352)
+[node name="Ladrillo05" parent="." instance=ExtResource("3_ladrillo")]
+position = Vector2(784, 256)
+[node name="Ladrillo06" parent="." instance=ExtResource("3_ladrillo")]
+position = Vector2(832, 208)
+[node name="Agua01" parent="." instance=ExtResource("6_agua")]
+position = Vector2(448, 400)
+[node name="Agua02" parent="." instance=ExtResource("6_agua")]
+position = Vector2(496, 448)
+[node name="Agua03" parent="." instance=ExtResource("6_agua")]
+position = Vector2(784, 448)
+[node name="Agua04" parent="." instance=ExtResource("6_agua")]
+position = Vector2(832, 400)
+[node name="Pasto01" parent="." instance=ExtResource("7_pasto")]
+position = Vector2(592, 448)
+[node name="Pasto02" parent="." instance=ExtResource("7_pasto")]
+position = Vector2(640, 448)
+[node name="Pasto03" parent="." instance=ExtResource("7_pasto")]
+position = Vector2(688, 448)
+[node name="RefugioSuperior01" parent="." instance=ExtResource("5_medio")]
+position = Vector2(616, 584)
+rotation = 1.5707963
+[node name="RefugioSuperior02" parent="." instance=ExtResource("5_medio")]
+position = Vector2(664, 584)
+rotation = 1.5707963
+[node name="RefugioIzquierdo" parent="." instance=ExtResource("5_medio")]
+position = Vector2(592, 620)
+[node name="RefugioDerecho" parent="." instance=ExtResource("5_medio")]
+position = Vector2(688, 620)
+
+[node name="PiezasParaEditar" type="Node2D" parent="."]
+script = ExtResource("8_paleta")
+
+[node name="Ladrillo" parent="PiezasParaEditar" instance=ExtResource("3_ladrillo")]
+position = Vector2(1030, 120)
+[node name="LadrilloDanado" parent="PiezasParaEditar" instance=ExtResource("9_danado")]
+position = Vector2(1090, 120)
+[node name="MedioLadrillo" parent="PiezasParaEditar" instance=ExtResource("5_medio")]
+position = Vector2(1150, 120)
+[node name="Acero" parent="PiezasParaEditar" instance=ExtResource("4_acero")]
+position = Vector2(1030, 190)
+[node name="MedioAceroIrrompible" parent="PiezasParaEditar" instance=ExtResource("10_acero_medio")]
+position = Vector2(1090, 190)
+[node name="Agua" parent="PiezasParaEditar" instance=ExtResource("6_agua")]
+position = Vector2(1030, 260)
+[node name="Pasto" parent="PiezasParaEditar" instance=ExtResource("7_pasto")]
+position = Vector2(1090, 260)

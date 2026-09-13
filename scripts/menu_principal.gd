@@ -9,13 +9,15 @@ extends Control
 
 func _ready() -> void:
 	get_tree().paused = false
+	ReproductorMusica.reproducir()
 	var indice_master = AudioServer.get_bus_index("Master")
 	volumen.value = db_to_linear(AudioServer.get_bus_volume_db(indice_master)) * 100.0
 	silencio.button_pressed = AudioServer.is_bus_mute(indice_master)
 	_actualizar_boton_audio()
 
 func _on_iniciar_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/nivel_prueba.tscn")
+	GestorJuego.seleccionar_dificultad(GestorJuego.Dificultad.FACIL)
+	get_tree().change_scene_to_file("res://scenes/cinematica_inicial.tscn")
 
 func _on_opciones_pressed() -> void:
 	panel_niveles.visible = false
@@ -39,7 +41,17 @@ func _on_cerrar_niveles_pressed() -> void:
 	fondo_modal.visible = false
 
 func _on_nivel_facil_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/nivel_prueba.tscn")
+	_iniciar_nivel(GestorJuego.Dificultad.FACIL)
+
+func _on_nivel_medio_pressed() -> void:
+	_iniciar_nivel(GestorJuego.Dificultad.MEDIO)
+
+func _on_nivel_dificil_pressed() -> void:
+	_iniciar_nivel(GestorJuego.Dificultad.DIFICIL)
+
+func _iniciar_nivel(dificultad: int) -> void:
+	GestorJuego.seleccionar_dificultad(dificultad)
+	get_tree().change_scene_to_file(GestorJuego.obtener_ruta_nivel())
 
 func _on_volumen_value_changed(valor: float) -> void:
 	var indice_master = AudioServer.get_bus_index("Master")

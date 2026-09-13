@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://scripts/menu_pausa.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/escenario/muro_ladrillo.png" id="2_ladrillo"]
 [ext_resource type="Texture2D" path="res://assets/escenario/muro_acero.png" id="3_acero"]
 [ext_resource type="Texture2D" path="res://assets/tanques/tanque_enemigo.png" id="4_enemigo"]
+[ext_resource type="Texture2D" path="res://assets/escenario/agua.png" id="5_agua"]
+[ext_resource type="Texture2D" path="res://assets/escenario/pared dañada.png" id="6_danada"]
+[ext_resource type="Texture2D" path="res://assets/bonus/escudo.png" id="7_escudo"]
+[ext_resource type="Texture2D" path="res://assets/bonus/herramientas crusadas .png" id="8_ingeniero"]
 
 [sub_resource type="AtlasTexture" id="Atlas_enemigo"]
 atlas = ExtResource("4_enemigo")
@@ -105,6 +109,13 @@ theme_override_font_sizes/font_size = 23
 theme_override_styles/normal = SubResource("Style_button")
 text = "VOLVER AL JUEGO"
 
+[node name="Reiniciar" type="Button" parent="CapaPausa/Panel/Margen/Contenido/Menu"]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("Style_button")
+text = "REINICIAR NIVEL"
+
 [node name="Opciones" type="Button" parent="CapaPausa/Panel/Margen/Contenido/Menu"]
 custom_minimum_size = Vector2(0, 68)
 layout_mode = 2
@@ -147,6 +158,29 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 21
 text = "Silenciar audio"
 
+[node name="TituloControles" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Opciones"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.76, 0.2, 1)
+theme_override_font_sizes/font_size = 21
+text = "CONTROLES"
+horizontal_alignment = 1
+
+[node name="ControlesPC" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Opciones"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "PC: WASD o flechas para moverse\nEspacio: disparar\nEscape: abrir o cerrar la pausa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlesMovil" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Opciones"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "MOVIL: cruceta para moverse\nBoton de mira para disparar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Volver" type="Button" parent="CapaPausa/Panel/Margen/Contenido/Opciones"]
 custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
@@ -154,97 +188,201 @@ theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("Style_button")
 text = "VOLVER"
 
-[node name="Informacion" type="VBoxContainer" parent="CapaPausa/Panel/Margen/Contenido"]
+[node name="Informacion" type="ScrollContainer" parent="CapaPausa/Panel/Margen/Contenido"]
 visible = false
 layout_mode = 2
-theme_override_constants/separation = 10
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
 
-[node name="Subtitulo" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion"]
+[node name="Lista" type="VBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Subtitulo" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.76, 0.2, 1)
 theme_override_font_sizes/font_size = 25
 text = "GUIA DE CAMPO"
 horizontal_alignment = 1
 
-[node name="Ladrillo" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion"]
-custom_minimum_size = Vector2(0, 82)
+[node name="Ladrillo" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista"]
+custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 theme_override_constants/separation = 18
 
-[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Ladrillo"]
-custom_minimum_size = Vector2(70, 70)
+[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Ladrillo"]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("2_ladrillo")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Ladrillo"]
+[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Ladrillo"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 15
 text = "LADRILLO\nSe rompe con 2 disparos normales."
 vertical_alignment = 1
 
-[node name="Acero" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion"]
-custom_minimum_size = Vector2(0, 82)
+[node name="Acero" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista"]
+custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 theme_override_constants/separation = 18
 
-[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Acero"]
-custom_minimum_size = Vector2(70, 70)
+[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Acero"]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("3_acero")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Acero"]
+[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Acero"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 18
-text = "ACERO\nResiste disparos normales."
+theme_override_font_sizes/font_size = 15
+text = "ACERO\nSolo el fuego pesado del jefe rompe el interior; el borde es irrompible."
 vertical_alignment = 1
 
-[node name="Enemigo" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion"]
-custom_minimum_size = Vector2(0, 82)
+[node name="ParedDanada" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista"]
+custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 theme_override_constants/separation = 18
 
-[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Enemigo"]
-custom_minimum_size = Vector2(70, 70)
+[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/ParedDanada"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("6_danada")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(0.72, 0.72, 0.72, 1)
+
+[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/ParedDanada"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+text = "PARED DANADA\nLe queda 1 vida y se rompe con el siguiente disparo."
+vertical_alignment = 1
+
+[node name="Agua" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Agua"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("5_agua")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Agua"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+text = "AGUA\nLos tanques no pasan, pero las balas vuelan por encima."
+vertical_alignment = 1
+
+[node name="Pasto" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Imagen" type="ColorRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Pasto"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.12, 0.36, 0.04, 0.9)
+
+[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Pasto"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+text = "PASTO\nTapa visualmente los tanques; no bloquea el movimiento."
+vertical_alignment = 1
+
+[node name="Escudo" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Escudo"]
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+texture = ExtResource("7_escudo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Escudo"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+text = "ESCUDO\nBlindaje adicional. La próxima bala que te impacte no te resta vida."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Ingeniero" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Ingeniero"]
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+texture = ExtResource("8_ingeniero")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Ingeniero"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+text = "INGENIERO\nPersonal rescatado de entre escombros. Te restauran un punto de vida."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Enemigo" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Enemigo"]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = SubResource("Atlas_enemigo")
 expand_mode = 1
 stretch_mode = 5
 modulate = Color(1, 0.55, 0.55, 1)
 
-[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Enemigo"]
+[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Enemigo"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 15
 text = "TANQUE ENEMIGO\nTiene 2 vidas y causa dano al chocar."
 vertical_alignment = 1
 
-[node name="Jefe" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion"]
-custom_minimum_size = Vector2(0, 82)
+[node name="Jefe" type="HBoxContainer" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista"]
+custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 theme_override_constants/separation = 18
 
-[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Jefe"]
-custom_minimum_size = Vector2(70, 70)
+[node name="Imagen" type="TextureRect" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Jefe"]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = SubResource("Atlas_enemigo")
 expand_mode = 1
 stretch_mode = 5
-modulate = Color(1, 0.78, 0.18, 1)
+modulate = Color(1, 0.08, 0.03, 1)
 
-[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Jefe"]
+[node name="Descripcion" type="Label" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Jefe"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 18
-text = "JEFE DORADO\nAparece al final, tiene 6 vidas."
+theme_override_font_sizes/font_size = 15
+text = "JEFE ROJO INTENSO\nAparece al final, tiene 6 vidas."
 vertical_alignment = 1
 
-[node name="Volver" type="Button" parent="CapaPausa/Panel/Margen/Contenido/Informacion"]
+[node name="Volver" type="Button" parent="CapaPausa/Panel/Margen/Contenido/Informacion/Lista"]
 custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
 theme_override_font_sizes/font_size = 21
@@ -253,10 +391,11 @@ text = "VOLVER"
 
 [connection signal="pressed" from="BotonPausa" to="." method="_on_pausa_pressed"]
 [connection signal="pressed" from="CapaPausa/Panel/Margen/Contenido/Menu/Continuar" to="." method="_on_continuar_pressed"]
+[connection signal="pressed" from="CapaPausa/Panel/Margen/Contenido/Menu/Reiniciar" to="." method="_on_reiniciar_pressed"]
 [connection signal="pressed" from="CapaPausa/Panel/Margen/Contenido/Menu/Opciones" to="." method="_on_opciones_pressed"]
 [connection signal="pressed" from="CapaPausa/Panel/Margen/Contenido/Menu/Informacion" to="." method="_on_informacion_pressed"]
 [connection signal="pressed" from="CapaPausa/Panel/Margen/Contenido/Menu/Inicio" to="." method="_on_inicio_pressed"]
 [connection signal="value_changed" from="CapaPausa/Panel/Margen/Contenido/Opciones/Volumen" to="." method="_on_volumen_value_changed"]
 [connection signal="toggled" from="CapaPausa/Panel/Margen/Contenido/Opciones/Silencio" to="." method="_on_silencio_toggled"]
 [connection signal="pressed" from="CapaPausa/Panel/Margen/Contenido/Opciones/Volver" to="." method="_on_volver_opciones_pressed"]
-[connection signal="pressed" from="CapaPausa/Panel/Margen/Contenido/Informacion/Volver" to="." method="_on_volver_informacion_pressed"]
+[connection signal="pressed" from="CapaPausa/Panel/Margen/Contenido/Informacion/Lista/Volver" to="." method="_on_volver_informacion_pressed"]

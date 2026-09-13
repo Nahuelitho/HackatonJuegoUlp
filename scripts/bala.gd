@@ -31,6 +31,8 @@ func _on_body_entered(cuerpo: Node) -> void:
 
 	if cuerpo.has_method("romper_muro"):
 		cuerpo.romper_muro(es_de_jugador, potencia > 1)
+	elif cuerpo.has_method("recibir_impacto_bala"):
+		cuerpo.recibir_impacto_bala(potencia)
 	elif cuerpo.has_method("recibir_danio"):
 		cuerpo.recibir_danio(potencia)
 	queue_free()

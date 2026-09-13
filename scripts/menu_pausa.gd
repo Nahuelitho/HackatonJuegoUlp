@@ -3,7 +3,7 @@ extends CanvasLayer
 @onready var capa_pausa: Control = $CapaPausa
 @onready var menu_principal: VBoxContainer = $CapaPausa/Panel/Margen/Contenido/Menu
 @onready var opciones: VBoxContainer = $CapaPausa/Panel/Margen/Contenido/Opciones
-@onready var informacion: VBoxContainer = $CapaPausa/Panel/Margen/Contenido/Informacion
+@onready var informacion: ScrollContainer = $CapaPausa/Panel/Margen/Contenido/Informacion
 @onready var volumen: HSlider = $CapaPausa/Panel/Margen/Contenido/Opciones/Volumen
 @onready var silencio: CheckButton = $CapaPausa/Panel/Margen/Contenido/Opciones/Silencio
 @onready var boton_pausa: Button = $BotonPausa
@@ -15,8 +15,19 @@ func _ready() -> void:
 	silencio.button_pressed = AudioServer.is_bus_mute(indice_master)
 	GestorJuego.partida_finalizada.connect(_on_partida_finalizada)
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		_alternar_pausa()
+		get_viewport().set_input_as_handled()
+
 func _on_pausa_pressed() -> void:
+	_alternar_pausa()
+
+func _alternar_pausa() -> void:
 	if GestorJuego.partida_terminada or GestorJuego.finalizando_partida:
+		return
+	if capa_pausa.visible:
+		_on_continuar_pressed()
 		return
 	capa_pausa.visible = true
 	menu_principal.visible = true
@@ -27,6 +38,9 @@ func _on_pausa_pressed() -> void:
 func _on_continuar_pressed() -> void:
 	get_tree().paused = false
 	capa_pausa.visible = false
+
+func _on_reiniciar_pressed() -> void:
+	GestorJuego.reiniciar_partida()
 
 func _on_opciones_pressed() -> void:
 	menu_principal.visible = false

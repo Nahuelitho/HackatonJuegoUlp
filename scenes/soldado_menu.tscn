@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/soldado_menu.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/soldado/Black_Soldier.png" id="2_texture"]
+
+[sub_resource type="Shader" id="Shader_dorado"]
+code = "shader_type canvas_item;\n\nvec3 rgb_a_hsv(vec3 c) {\n\tvec4 k = vec4(0.0, -0.333333, 0.666667, -1.0);\n\tvec4 p = mix(vec4(c.bg, k.wz), vec4(c.gb, k.xy), step(c.b, c.g));\n\tvec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));\n\tfloat d = q.x - min(q.w, q.y);\n\tfloat e = 0.00001;\n\treturn vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);\n}\n\nvoid fragment() {\n\tvec4 original = texture(TEXTURE, UV) * COLOR;\n\tvec3 hsv = rgb_a_hsv(original.rgb);\n\tbool rojo = hsv.x < 0.08 || hsv.x > 0.92;\n\tbool violeta = hsv.x > 0.62 && hsv.x < 0.92;\n\tif (hsv.y > 0.35 && hsv.z > 0.12 && (rojo || violeta)) {\n\t	float brillo = max(hsv.z, 0.38);\n\t	original.rgb = vec3(1.0, 0.68, 0.08) * brillo;\n\t}\n\tCOLOR = original;\n}\n"
+
+[sub_resource type="ShaderMaterial" id="Material_dorado"]
+shader = SubResource("Shader_dorado")
 
 [sub_resource type="AtlasTexture" id="Preview_soldado"]
 atlas = ExtResource("2_texture")
@@ -16,6 +22,7 @@ animations = [{
 }]
 
 [node name="SoldadoMenu" type="AnimatedSprite2D"]
+material = SubResource("Material_dorado")
 texture_filter = 1
 sprite_frames = SubResource("Frames_preview")
 scale = Vector2(2.0, 2.0)

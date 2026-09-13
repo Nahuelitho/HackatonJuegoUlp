@@ -1,6 +1,8 @@
 extends StaticBody2D
-# Acero irrompible, solo con arma mejorada
+# El acero interior puede romperse con mejora; el borde nunca se rompe.
 
-func romper_muro(_es_de_jugador: bool, tiene_mejora: bool = false) -> void:
-	if tiene_mejora:
+@export var rompible: bool = true
+
+func romper_muro(_es_de_jugador: bool, impacto_fuerte: bool = false) -> void:
+	if rompible and impacto_fuerte:
 		queue_free()

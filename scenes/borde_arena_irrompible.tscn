@@ -1,0 +1,138 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/muro_acero_medio_irrompible.tscn" id="1_acero"]
+
+[node name="BordeArenaIrrompible" type="Node2D"]
+
+[node name="Superior01" parent="." instance=ExtResource("1_acero")]
+position = Vector2(344, 52)
+[node name="Superior02" parent="." instance=ExtResource("1_acero")]
+position = Vector2(392, 52)
+[node name="Superior03" parent="." instance=ExtResource("1_acero")]
+position = Vector2(440, 52)
+[node name="Superior04" parent="." instance=ExtResource("1_acero")]
+position = Vector2(488, 52)
+[node name="Superior05" parent="." instance=ExtResource("1_acero")]
+position = Vector2(536, 52)
+[node name="Superior06" parent="." instance=ExtResource("1_acero")]
+position = Vector2(584, 52)
+[node name="Superior07" parent="." instance=ExtResource("1_acero")]
+position = Vector2(632, 52)
+[node name="Superior08" parent="." instance=ExtResource("1_acero")]
+position = Vector2(680, 52)
+[node name="Superior09" parent="." instance=ExtResource("1_acero")]
+position = Vector2(728, 52)
+[node name="Superior10" parent="." instance=ExtResource("1_acero")]
+position = Vector2(776, 52)
+[node name="Superior11" parent="." instance=ExtResource("1_acero")]
+position = Vector2(824, 52)
+[node name="Superior12" parent="." instance=ExtResource("1_acero")]
+position = Vector2(872, 52)
+[node name="Superior13" parent="." instance=ExtResource("1_acero")]
+position = Vector2(920, 52)
+
+[node name="Inferior01" parent="." instance=ExtResource("1_acero")]
+position = Vector2(344, 668)
+[node name="Inferior02" parent="." instance=ExtResource("1_acero")]
+position = Vector2(392, 668)
+[node name="Inferior03" parent="." instance=ExtResource("1_acero")]
+position = Vector2(440, 668)
+[node name="Inferior04" parent="." instance=ExtResource("1_acero")]
+position = Vector2(488, 668)
+[node name="Inferior05" parent="." instance=ExtResource("1_acero")]
+position = Vector2(536, 668)
+[node name="Inferior06" parent="." instance=ExtResource("1_acero")]
+position = Vector2(584, 668)
+[node name="Inferior07" parent="." instance=ExtResource("1_acero")]
+position = Vector2(632, 668)
+[node name="Inferior08" parent="." instance=ExtResource("1_acero")]
+position = Vector2(680, 668)
+[node name="Inferior09" parent="." instance=ExtResource("1_acero")]
+position = Vector2(728, 668)
+[node name="Inferior10" parent="." instance=ExtResource("1_acero")]
+position = Vector2(776, 668)
+[node name="Inferior11" parent="." instance=ExtResource("1_acero")]
+position = Vector2(824, 668)
+[node name="Inferior12" parent="." instance=ExtResource("1_acero")]
+position = Vector2(872, 668)
+[node name="Inferior13" parent="." instance=ExtResource("1_acero")]
+position = Vector2(920, 668)
+
+[node name="Izquierdo01" parent="." instance=ExtResource("1_acero")]
+position = Vector2(332, 88)
+rotation = 1.5707963
+[node name="Derecho01" parent="." instance=ExtResource("1_acero")]
+position = Vector2(948, 88)
+rotation = 1.5707963
+[node name="Izquierdo02" parent="." instance=ExtResource("1_acero")]
+position = Vector2(332, 136)
+rotation = 1.5707963
+[node name="Derecho02" parent="." instance=ExtResource("1_acero")]
+position = Vector2(948, 136)
+rotation = 1.5707963
+[node name="Izquierdo03" parent="." instance=ExtResource("1_acero")]
+position = Vector2(332, 184)
+rotation = 1.5707963
+[node name="Derecho03" parent="." instance=ExtResource("1_acero")]
+position = Vector2(948, 184)
+rotation = 1.5707963
+[node name="Izquierdo04" parent="." instance=ExtResource("1_acero")]
+position = Vector2(332, 232)
+rotation = 1.5707963
+[node name="Derecho04" parent="." instance=ExtResource("1_acero")]
+position = Vector2(948, 232)
+rotation = 1.5707963
+[node name="Izquierdo05" parent="." instance=ExtResource("1_acero")]
+position = Vector2(332, 280)
+rotation = 1.5707963
+[node name="Derecho05" parent="." instance=ExtResource("1_acero")]
+position = Vector2(948, 280)
+rotation = 1.5707963
+[node name="Izquierdo06" parent="." instance=ExtResource("1_acero")]
+position = Vector2(332, 328)
+rotation = 1.5707963
+[node name="Derecho06" parent="." instance=ExtResource("1_acero")]
+position = Vector2(948, 328)
+rotation = 1.5707963
+[node name="Izquierdo07" parent="." instance=ExtResource("1_acero")]
+position = Vector2(332, 376)
+rotation = 1.5707963
+[node name="Derecho07" parent="." instance=ExtResource("1_acero")]
+position = Vector2(948, 376)
+rotation = 1.5707963
+[node name="Izquierdo08" parent="." instance=ExtResource("1_acero")]
+position = Vector2(332, 424)
+rotation = 1.5707963
+[node name="Derecho08" parent="." instance=ExtResource("1_acero")]
+position = Vector2(948, 424)
+rotation = 1.5707963
+[node name="Izquierdo09" parent="." instance=ExtResource("1_acero")]
+position = Vector2(332, 472)
+rotation = 1.5707963
+[node name="Derecho09" parent="." instance=ExtResource("1_acero")]
+position = Vector2(948, 472)
+rotation = 1.5707963
+[node name="Izquierdo10" parent="." instance=ExtResource("1_acero")]
+position = Vector2(332, 520)
+rotation = 1.5707963
+[node name="Derecho10" parent="." instance=ExtResource("1_acero")]
+position = Vector2(948, 520)
+rotation = 1.5707963
+[node name="Izquierdo11" parent="." instance=ExtResource("1_acero")]
+position = Vector2(332, 568)
+rotation = 1.5707963
+[node name="Derecho11" parent="." instance=ExtResource("1_acero")]
+position = Vector2(948, 568)
+rotation = 1.5707963
+[node name="Izquierdo12" parent="." instance=ExtResource("1_acero")]
+position = Vector2(332, 616)
+rotation = 1.5707963
+[node name="Derecho12" parent="." instance=ExtResource("1_acero")]
+position = Vector2(948, 616)
+rotation = 1.5707963
+[node name="Izquierdo13" parent="." instance=ExtResource("1_acero")]
+position = Vector2(332, 664)
+rotation = 1.5707963
+[node name="Derecho13" parent="." instance=ExtResource("1_acero")]
+position = Vector2(948, 664)
+rotation = 1.5707963

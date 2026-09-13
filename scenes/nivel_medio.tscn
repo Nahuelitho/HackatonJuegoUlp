@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://3ud826ae20j3"]
+
+[ext_resource type="PackedScene" uid="uid://cnrgtwq61001v" path="res://scenes/nivel_prueba.tscn" id="1_nivel"]
+[ext_resource type="PackedScene" path="res://scenes/mapa_nivel_medio.tscn" id="2_mapa"]
+
+[node name="NivelMedio" instance=ExtResource("1_nivel")]
+dificultad_nivel = 1
+
+[node name="Muros" parent="."]
+visible = false
+
+[node name="BaseAguila" parent="."]
+position = Vector2(640, 648)
+
+[node name="VistaMapa" parent="." instance=ExtResource("2_mapa")]
+
+[editable path="VistaMapa"]

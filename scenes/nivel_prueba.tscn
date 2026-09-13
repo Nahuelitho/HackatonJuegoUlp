@@ -1,18 +1,23 @@
 [gd_scene format=3 uid="uid://cnrgtwq61001v"]
 
 [ext_resource type="PackedScene" path="res://scenes/jugador.tscn" id="1_jugador"]
-[ext_resource type="PackedScene" path="res://scenes/muro_ladrillo.tscn" id="2_ladrillo"]
-[ext_resource type="PackedScene" path="res://scenes/muro_acero.tscn" id="3_acero"]
 [ext_resource type="PackedScene" path="res://scenes/menu_pausa.tscn" id="4_pausa"]
 [ext_resource type="PackedScene" path="res://scenes/enemigo.tscn" id="5_enemigo"]
-[ext_resource type="Script" path="res://scripts/nivel_prueba.gd" id="6_nivel"]
-[ext_resource type="Texture2D" path="res://assets/bonus/HealthUI.png" id="7_health"]
-[ext_resource type="Texture2D" path="res://assets/touch/Up.png" id="8_up"]
-[ext_resource type="Texture2D" path="res://assets/touch/Down.png" id="9_down"]
-[ext_resource type="Texture2D" path="res://assets/touch/Left.png" id="10_left"]
-[ext_resource type="Texture2D" path="res://assets/touch/Right.png" id="11_right"]
-[ext_resource type="Texture2D" path="res://assets/bonus/objetivo-del-arma.png" id="12_fire"]
+[ext_resource type="Script" uid="uid://b8kjvsjbo7tmy" path="res://scripts/nivel_prueba.gd" id="6_nivel"]
+[ext_resource type="Texture2D" uid="uid://bc06ll133lskm" path="res://assets/bonus/HealthUI.png" id="7_health"]
+[ext_resource type="Texture2D" uid="uid://k17eix6kscv4" path="res://assets/touch/Up.png" id="8_up"]
+[ext_resource type="Texture2D" uid="uid://dimdbo1q8vq6j" path="res://assets/touch/Down.png" id="9_down"]
+[ext_resource type="Texture2D" uid="uid://ckvcfx73g7pp" path="res://assets/touch/Left.png" id="10_left"]
+[ext_resource type="Texture2D" uid="uid://c4i4kn3nueqep" path="res://assets/touch/Right.png" id="11_right"]
+[ext_resource type="Texture2D" uid="uid://blvlgyehkxoxd" path="res://assets/bonus/objetivo-del-arma.png" id="12_fire"]
 [ext_resource type="PackedScene" path="res://scenes/base_aguila.tscn" id="13_base"]
+[ext_resource type="PackedScene" uid="uid://cpyioe8vj3xll" path="res://scenes/mapa_nivel_facil.tscn" id="14_mapa"]
+[ext_resource type="Script" uid="uid://cxss4q3vptv8x" path="res://scripts/gestor_bonus.gd" id="15_gestor_bonus"]
+[ext_resource type="PackedScene" path="res://scenes/bonus_vida.tscn" id="16_bonus_vida"]
+[ext_resource type="PackedScene" path="res://scenes/bonus_escudo.tscn" id="17_bonus_escudo"]
+[ext_resource type="AudioStream" uid="uid://dk4osvigm8eva" path="res://assets/audio/musica/sonidoVictoria.wav" id="18_victoria"]
+[ext_resource type="AudioStream" uid="uid://dmo20dpj6rky8" path="res://assets/audio/musica/sonidoGameOver.wav" id="19_derrota"]
+[ext_resource type="Texture2D" uid="uid://ci02ahh73a8fl" path="res://assets/ui/background_map.png" id="20_fondo_mapa"]
 
 [sub_resource type="RectangleShape2D" id="Shape_horizontal"]
 size = Vector2(640, 20)
@@ -27,18 +32,14 @@ font_color = Color(0.95, 0.95, 0.95, 1)
 [sub_resource type="RectangleShape2D" id="Shape_touch"]
 size = Vector2(82, 82)
 
+[sub_resource type="AtlasTexture" id="Atlas_up"]
+atlas = ExtResource("8_up")
+region = Rect2(190, 0, 250, 188)
+
 [sub_resource type="LabelSettings" id="LabelSettings_control"]
 font_size = 26
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="AtlasTexture" id="Atlas_heart"]
-atlas = ExtResource("7_health")
-region = Rect2(0, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="Atlas_up"]
-atlas = ExtResource("8_up")
-region = Rect2(190, 0, 250, 188)
 
 [sub_resource type="AtlasTexture" id="Atlas_down"]
 atlas = ExtResource("9_down")
@@ -61,13 +62,23 @@ offset_bottom = 720.0
 mouse_filter = 2
 color = Color(0.035, 0.04, 0.05, 1)
 
+[node name="FondoMapa" type="TextureRect" parent="." unique_id=1539087308]
+offset_left = 320.0
+offset_top = 40.0
+offset_right = 960.0
+offset_bottom = 680.0
+mouse_filter = 2
+texture = ExtResource("20_fondo_mapa")
+expand_mode = 1
+stretch_mode = 6
+
 [node name="Arena" type="ColorRect" parent="." unique_id=504392430]
 offset_left = 320.0
 offset_top = 40.0
 offset_right = 960.0
 offset_bottom = 680.0
 mouse_filter = 2
-color = Color(0.005, 0.007, 0.01, 1)
+color = Color(0.005, 0.007, 0.01, 0.28)
 
 [node name="Limites" type="Node2D" parent="." unique_id=17373522]
 
@@ -100,53 +111,107 @@ collision_mask = 0
 shape = SubResource("Shape_vertical")
 
 [node name="Jugador" parent="." unique_id=129485100 instance=ExtResource("1_jugador")]
-position = Vector2(400, 560)
+position = Vector2(399, 601)
 
 [node name="EnemigoIzquierda" parent="." unique_id=59568880 instance=ExtResource("5_enemigo")]
-position = Vector2(400, 120)
+position = Vector2(350, 84)
 
-[node name="EnemigoCentro" parent="." instance=ExtResource("5_enemigo")]
-position = Vector2(640, 120)
+[node name="EnemigoCentro" parent="." unique_id=264416015 instance=ExtResource("5_enemigo")]
+position = Vector2(641, 84)
 
-[node name="EnemigoDerecha" parent="." instance=ExtResource("5_enemigo")]
-position = Vector2(880, 120)
+[node name="EnemigoDerecha" parent="." unique_id=307146523 instance=ExtResource("5_enemigo")]
+position = Vector2(930, 84)
 
-[node name="Muros" type="Node2D" parent="." unique_id=1456570383]
+[node name="Muros" parent="." unique_id=1667000559 instance=ExtResource("14_mapa")]
+position = Vector2(0, -1)
 
-[node name="BaseAguila" parent="." instance=ExtResource("13_base")]
-position = Vector2(640, 628)
+[node name="RefugioSuperior02" parent="Muros" index="98" unique_id=431204083]
+position = Vector2(619, 581)
+
+[node name="RefugioSuperior04" parent="Muros" index="99" unique_id=805407692]
+position = Vector2(666, 581)
+
+[node name="RefugioIzquierdo01" parent="Muros" index="100" unique_id=1881697934]
+position = Vector2(583, 593)
+
+[node name="RefugioDerecho01" parent="Muros" index="101" unique_id=1447658303]
+position = Vector2(702, 593)
+
+[node name="RefugioIzquierdo02" parent="Muros" index="102" unique_id=921766076]
+position = Vector2(583, 640)
+
+[node name="RefugioDerecho02" parent="Muros" index="103" unique_id=464234679]
+position = Vector2(702, 640)
+
+[node name="GestorBonus" type="Node" parent="." unique_id=424419464]
+script = ExtResource("15_gestor_bonus")
+prefab_bonus = Array[PackedScene]([ExtResource("16_bonus_vida"), ExtResource("17_bonus_escudo")])
+
+[node name="BaseAguila" parent="." unique_id=525045912 instance=ExtResource("13_base")]
+position = Vector2(641, 630)
+
+[node name="SonidoVictoria" type="AudioStreamPlayer" parent="." unique_id=313364597]
+process_mode = 3
+stream = ExtResource("18_victoria")
+volume_db = -4.0
+
+[node name="SonidoDerrota" type="AudioStreamPlayer" parent="." unique_id=1170782135]
+process_mode = 3
+stream = ExtResource("19_derrota")
+volume_db = -4.0
 
 [node name="Interfaz" type="CanvasLayer" parent="." unique_id=1175431969]
 
-[node name="VidaTexto" type="Label" parent="Interfaz"]
+[node name="VidaTexto" type="Label" parent="Interfaz" unique_id=377604487]
 offset_left = 28.0
-offset_top = 78.0
-offset_right = 100.0
-offset_bottom = 108.0
+offset_top = 68.0
+offset_right = 180.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 28
 text = "VIDA"
-label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
 
-[node name="Corazon1" type="TextureRect" parent="Interfaz"]
+[node name="Corazon1" type="TextureRect" parent="Interfaz" unique_id=888787175]
+texture_filter = 1
 offset_left = 30.0
-offset_top = 112.0
-offset_right = 62.0
-offset_bottom = 144.0
-texture_filter = 1
-texture = SubResource("Atlas_heart")
+offset_top = 108.0
+offset_right = 76.0
+offset_bottom = 154.0
+texture = ExtResource("7_health")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Corazon2" type="TextureRect" parent="Interfaz"]
-offset_left = 70.0
-offset_top = 112.0
-offset_right = 102.0
-offset_bottom = 144.0
+[node name="Corazon2" type="TextureRect" parent="Interfaz" unique_id=239499358]
 texture_filter = 1
-texture = SubResource("Atlas_heart")
+offset_left = 82.0
+offset_top = 108.0
+offset_right = 128.0
+offset_bottom = 154.0
+texture = ExtResource("7_health")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Restantes" type="Label" parent="Interfaz"]
+[node name="Corazon3" type="TextureRect" parent="Interfaz" unique_id=1281505433]
+texture_filter = 1
+offset_left = 134.0
+offset_top = 108.0
+offset_right = 180.0
+offset_bottom = 154.0
+texture = ExtResource("7_health")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cronometro" type="Label" parent="Interfaz"]
+offset_left = 1020.0
+offset_top = 82.0
+offset_right = 1245.0
+offset_bottom = 117.0
+theme_override_colors/font_color = Color(1, 0.76, 0.2, 1)
+theme_override_font_sizes/font_size = 24
+text = "TIEMPO: 00:00"
+horizontal_alignment = 1
+
+[node name="Restantes" type="Label" parent="Interfaz" unique_id=2045906281]
 offset_left = 1020.0
 offset_top = 130.0
 offset_right = 1245.0
@@ -155,16 +220,16 @@ text = "ENEMIGOS: 10"
 label_settings = SubResource("LabelSettings_title")
 horizontal_alignment = 1
 
-[node name="ContadorTanques" type="GridContainer" parent="Interfaz"]
+[node name="ContadorTanques" type="GridContainer" parent="Interfaz" unique_id=1244579145]
 offset_left = 1035.0
 offset_top = 175.0
 offset_right = 1225.0
 offset_bottom = 285.0
-columns = 5
 theme_override_constants/h_separation = 6
 theme_override_constants/v_separation = 6
+columns = 5
 
-[node name="Cruceta" type="Sprite2D" parent="Interfaz"]
+[node name="Cruceta" type="Sprite2D" parent="Interfaz" unique_id=1180999491]
 position = Vector2(160, 520)
 scale = Vector2(0.3, 0.3)
 
@@ -176,8 +241,8 @@ visibility_mode = 1
 
 [node name="Fondo" type="Sprite2D" parent="Interfaz/Arriba" unique_id=1951538717]
 visible = false
-texture = SubResource("Atlas_up")
 scale = Vector2(0.42, 0.42)
+texture = SubResource("Atlas_up")
 
 [node name="Texto" type="Label" parent="Interfaz/Arriba" unique_id=2003940166]
 visible = false
@@ -197,8 +262,8 @@ visibility_mode = 1
 
 [node name="Fondo" type="Sprite2D" parent="Interfaz/Abajo" unique_id=1216835707]
 visible = false
-texture = SubResource("Atlas_down")
 scale = Vector2(0.42, 0.42)
+texture = SubResource("Atlas_down")
 
 [node name="Texto" type="Label" parent="Interfaz/Abajo" unique_id=520104621]
 visible = false
@@ -218,8 +283,8 @@ visibility_mode = 1
 
 [node name="Fondo" type="Sprite2D" parent="Interfaz/Izquierda" unique_id=11600483]
 visible = false
-texture = SubResource("Atlas_left")
 scale = Vector2(0.42, 0.42)
+texture = SubResource("Atlas_left")
 
 [node name="Texto" type="Label" parent="Interfaz/Izquierda" unique_id=1179960307]
 visible = false
@@ -239,8 +304,8 @@ visibility_mode = 1
 
 [node name="Fondo" type="Sprite2D" parent="Interfaz/Derecha" unique_id=597540994]
 visible = false
-texture = SubResource("Atlas_right")
 scale = Vector2(0.42, 0.42)
+texture = SubResource("Atlas_right")
 
 [node name="Texto" type="Label" parent="Interfaz/Derecha" unique_id=1884383611]
 visible = false
@@ -259,8 +324,8 @@ action = "disparar"
 visibility_mode = 1
 
 [node name="Fondo" type="Sprite2D" parent="Interfaz/Disparar" unique_id=1203202547]
-texture = ExtResource("12_fire")
 scale = Vector2(0.2, 0.2)
+texture = ExtResource("12_fire")
 
 [node name="Texto" type="Label" parent="Interfaz/Disparar" unique_id=1188971885]
 visible = false
@@ -272,9 +337,9 @@ text = "FIRE"
 label_settings = SubResource("LabelSettings_control")
 horizontal_alignment = 1
 
-[node name="Resultado" type="Control" parent="Interfaz"]
-visible = false
+[node name="Resultado" type="Control" parent="Interfaz" unique_id=1321703983]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -282,7 +347,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Oscurecer" type="ColorRect" parent="Interfaz/Resultado"]
+[node name="Oscurecer" type="ColorRect" parent="Interfaz/Resultado" unique_id=563360714]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -291,32 +356,41 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.78)
 
-[node name="Panel" type="PanelContainer" parent="Interfaz/Resultado"]
+[node name="Panel" type="PanelContainer" parent="Interfaz/Resultado" unique_id=1681027719]
 layout_mode = 0
 offset_left = 430.0
 offset_top = 180.0
 offset_right = 850.0
-offset_bottom = 540.0
+offset_bottom = 570.0
 
-[node name="Contenido" type="VBoxContainer" parent="Interfaz/Resultado/Panel"]
+[node name="Contenido" type="VBoxContainer" parent="Interfaz/Resultado/Panel" unique_id=1306353320]
 layout_mode = 2
-theme_override_constants/separation = 25
+theme_override_constants/separation = 18
 
-[node name="Titulo" type="Label" parent="Interfaz/Resultado/Panel/Contenido"]
-custom_minimum_size = Vector2(0, 120)
+[node name="Titulo" type="Label" parent="Interfaz/Resultado/Panel/Contenido" unique_id=1141801245]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "VICTORIA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Reintentar" type="Button" parent="Interfaz/Resultado/Panel/Contenido"]
+[node name="TiempoJugado" type="Label" parent="Interfaz/Resultado/Panel/Contenido"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 22
+text = "TIEMPO JUGADO: 00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reintentar" type="Button" parent="Interfaz/Resultado/Panel/Contenido" unique_id=232184820]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "REINTENTAR"
 
-[node name="Inicio" type="Button" parent="Interfaz/Resultado/Panel/Contenido"]
+[node name="Inicio" type="Button" parent="Interfaz/Resultado/Panel/Contenido" unique_id=1928741824]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -326,3 +400,5 @@ text = "VOLVER AL INICIO"
 
 [connection signal="pressed" from="Interfaz/Resultado/Panel/Contenido/Reintentar" to="." method="_on_reintentar_pressed"]
 [connection signal="pressed" from="Interfaz/Resultado/Panel/Contenido/Inicio" to="." method="_on_inicio_pressed"]
+
+[editable path="Muros"]

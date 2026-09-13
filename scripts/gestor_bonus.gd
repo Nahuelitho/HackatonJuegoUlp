@@ -1,24 +1,24 @@
 extends Node
-# Cuenta muros y spawnea bonus cada 4-8
+# Cuenta muros y spawnea bonus cada 3-7
 
-@export var prefab_bonus: Array[PackedScene] # 0:vida, 1:arma, 2:bomba, 3:escudo
+@export var prefab_bonus: Array[PackedScene] # vida y escudo
 
 var muros_rotos: int = 0
 var proximo_objetivo: int = 0
 
 func _ready() -> void:
+	add_to_group("gestor_bonus")
 	randomize()
 	sortear_proximo_objetivo()
 
 func sortear_proximo_objetivo() -> void:
-	proximo_objetivo = randi_range(4, 8)
+	proximo_objetivo = randi_range(3, 7)
 	muros_rotos = 0
-	print("Proximo bonus en: ", proximo_objetivo, " muros")
 
 func contar_muro_roto(posicion: Vector2) -> void:
 	muros_rotos += 1
 	if muros_rotos >= proximo_objetivo:
-		spawnear_bonus(posicion)
+		spawnear_bonus.call_deferred(posicion)
 		sortear_proximo_objetivo()
 
 func spawnear_bonus(pos: Vector2) -> void:

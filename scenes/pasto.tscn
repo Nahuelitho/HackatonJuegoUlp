@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/pasto_escondite.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/escenario/arbustos.png" id="2_arbusto"]
+
+[node name="Pasto" type="Node2D"]
+z_index = 10
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_arbusto")
+scale = Vector2(0.48, 0.48)
+modulate = Color(0.48, 0.58, 0.45, 0.78)

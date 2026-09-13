@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/nivel_prueba.tscn" id="1_nivel"]
+[ext_resource type="PackedScene" path="res://scenes/mapa_nivel_dificil.tscn" id="2_mapa"]
+
+[node name="NivelDificil" instance=ExtResource("1_nivel")]
+dificultad_nivel = 2
+
+[node name="Muros" parent="."]
+visible = false
+
+[node name="VistaMapa" parent="." instance=ExtResource("2_mapa")]
+
+[editable path="VistaMapa"]

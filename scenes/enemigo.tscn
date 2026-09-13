@@ -10,7 +10,8 @@ size = Vector2(20, 38)
 
 [node name="Enemigo" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 39
+safe_margin = 0.01
 script = ExtResource("1_script")
 prefab_bala = ExtResource("3_bala")
 
@@ -25,6 +26,12 @@ shape = SubResource("Shape_enemigo")
 
 [node name="PuntoDisparo" type="Marker2D" parent="."]
 position = Vector2(0, -32)
+
+[node name="SensorFrontal" type="RayCast2D" parent="."]
+target_position = Vector2(0, -44)
+collision_mask = 39
+exclude_parent = true
+enabled = true
 
 [node name="SonidoImpacto" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_impacto")

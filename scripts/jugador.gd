@@ -4,25 +4,27 @@ signal vida_cambiada(vida_actual: int)
 
 const EXPLOSION = preload("res://scenes/explosion.tscn")
 
-@export var vida: int = 2
+var vida: int = 2
 @export var velocidad: float = 200.0
 @export var cadencia: float = 0.35
-@export var esta_escondido: bool = false
 
 @export var prefab_bala: PackedScene
 
 @onready var punto_disparo: Marker2D = $PuntoDisparo
-@onready var sprite: Sprite2D = $Sprite2D
 @onready var sonido_disparo: AudioStreamPlayer2D = $SonidoDisparo
 @onready var sonido_impacto: AudioStreamPlayer2D = $SonidoImpacto
+@onready var aura_escudo: Line2D = $AuraEscudo
 
 var direccion_actual: Vector2 = Vector2.UP
 var tiempo_proximo_disparo: float = 0.0
-var potencia_bala: int = 1
 var esta_muerto: bool = false
+var vida_maxima: int = 2
+var escudo_activo: bool = false
 
 func _ready() -> void:
 	add_to_group("jugador")
+	vida_maxima = GestorJuego.obtener_vidas_iniciales()
+	vida = vida_maxima
 	vida_cambiada.emit(vida)
 
 func _physics_process(_delta: float) -> void:
@@ -56,21 +58,27 @@ func disparar() -> void:
 
 	tiempo_proximo_disparo = ahora + cadencia
 	var bala = prefab_bala.instantiate()
-	bala.inicializar(direccion_actual, true, potencia_bala)
+	bala.inicializar(direccion_actual, true)
 	get_tree().current_scene.add_child(bala)
 	bala.global_position = punto_disparo.global_position
 	sonido_disparo.play()
 
-	if esta_escondido:
-		cambiar_escondite(false)
-
-func cambiar_escondite(escondido: bool) -> void:
-	esta_escondido = escondido
-	sprite.modulate.a = 0.4 if escondido else 1.0
-
 func recibir_danio(cantidad: int = 1) -> void:
 	if esta_muerto:
 		return
+	_aplicar_danio(cantidad)
+
+func recibir_impacto_bala(cantidad: int = 1) -> void:
+	if esta_muerto:
+		return
+	if escudo_activo:
+		escudo_activo = false
+		aura_escudo.visible = false
+		sonido_impacto.play()
+		return
+	_aplicar_danio(cantidad)
+
+func _aplicar_danio(cantidad: int) -> void:
 	vida -= cantidad
 	vida_cambiada.emit(maxi(vida, 0))
 	if vida <= 0:
@@ -91,9 +99,8 @@ func crear_explosion() -> void:
 func aplicar_bonus(tipo: String) -> void:
 	match tipo:
 		"vida_extra":
-			vida = mini(vida + 1, 2)
+			vida = mini(vida + 1, vida_maxima)
 			vida_cambiada.emit(vida)
-		"arma_mejorada":
-			potencia_bala = 2
 		"escudo":
-			cambiar_escondite(true)
+			escudo_activo = true
+			aura_escudo.visible = true

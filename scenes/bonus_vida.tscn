@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/bonus_generico.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/bonus/herramientas crusadas .png" id="2_herramientas"]
+
+[sub_resource type="CircleShape2D" id="Shape_bonus"]
+radius = 18.0
+
+[node name="BonusVida" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_script")
+tipo = "vida_extra"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_herramientas")
+scale = Vector2(0.36, 0.36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Shape_bonus")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
