@@ -13,7 +13,7 @@ config_version=5
 config/name="Golden Dogs"
 run/main_scene="res://scenes/aviso_historico.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/ui/icon_android.png"
 
 [autoload]
 
@@ -27,7 +27,8 @@ window/size/viewport_height=720
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
-window/handheld/orientation=1
+window/stretch/aspect="ignore"
+window/handheld/orientation=4
 
 [gui]
 
@@ -65,6 +66,10 @@ disparar={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_mouse_from_touch=true
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
@@ -75,3 +80,4 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

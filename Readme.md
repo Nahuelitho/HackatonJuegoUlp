@@ -16,6 +16,7 @@ Para ganar hay que eliminar todos los tanques del nivel y luego derrotar al jefe
 - Recursos PNG para sprites y WAV para musica y efectos.
 - Renderizador Compatibility para favorecer Android y equipos modestos.
 - Resolucion logica horizontal de 1280x720.
+- Orientacion Android `sensor_landscape`: permite horizontal normal e invertida, pero nunca vertical. La interfaz se estira para ocupar todo el ancho de pantallas panoramicas.
 
 ## Requisitos
 
@@ -87,19 +88,20 @@ Las escenas principales son:
 
 - `scenes/aviso_historico.tscn`: aviso de contexto y ficcionalizacion previo al menu.
 - `scenes/menu_principal.tscn`: inicio, niveles y opciones.
+- `scenes/introduccion_historia.tscn`: contexto de la guerra, Port City y la misión de Golden Dogs.
 - `scenes/cinematica_inicial.tscn`: dialogo entre Sgt. John y el Cabo antes del nivel facil iniciado desde el botón principal.
 - `scenes/nivel_prueba.tscn`, `nivel_medio.tscn` y `nivel_dificil.tscn`: niveles jugables.
 - `scenes/menu_pausa.tscn`: pausa, reinicio, guia con scroll, opciones y volumen.
 - `scenes/jugador.tscn`, `enemigo.tscn` y `jefe.tscn`: tanques.
 - `scenes/base_aguila.tscn`: objetivo que se debe proteger.
 
-El flujo principal es: aviso historico, menu principal, cinematica inicial, nivel facil y resultado de victoria o derrota. La cinematica permite avanzar cada intervencion o saltar directamente al juego. El selector NIVELES abre la dificultad elegida sin cinematica.
+El flujo principal es: aviso historico, menu principal, introduccion narrativa, charla entre soldados, nivel facil y resultado. Ambas escenas narrativas permiten avanzar o saltar. El selector NIVELES abre la dificultad elegida sin reproducir las introducciones.
 
 ## Edicion del mapa
 
 Cada dificultad tiene un mapa visualmente editable: `scenes/mapa_nivel_facil.tscn`, `scenes/mapa_nivel_medio.tscn` y `scenes/mapa_nivel_dificil.tscn`. Son autonomos: editar uno no modifica los otros. Los tres usan las mismas piezas de medio acero irrompible y esquinas rectas en sus bordes. Todos incluyen una guia visible solo en el editor. El mapa facil incluye una muestra de agua y una de pasto para mover o duplicar. Las piezas disponibles para arrastrar desde el panel **Sistema de archivos** son:
 
-El boton principal `INICIAR JUEGO` reproduce la cinematica antes del nivel facil. La seleccion directa desde `NIVELES` entra al mapa elegido sin repetir la cinematica.
+El boton principal `INICIAR JUEGO` reproduce la introduccion de Port City y luego la charla de los soldados antes del nivel facil. La seleccion directa desde `NIVELES` entra al mapa elegido sin repetir las escenas narrativas.
 
 - `scenes/muro_ladrillo.tscn`: ladrillo completo con 2 vidas.
 - `scenes/muro_ladrillo_danado.tscn`: pared ya dañada con 1 vida.
@@ -127,6 +129,16 @@ Todavía quedan por pulir el balance, la IA en configuraciones extremas, los dia
 5. Comprobar audio, resolución 1280x720, controles y pantalla completa antes de presentar.
 
 No hace falta copiar la carpeta `.godot/`: se regenera automáticamente. Sí deben subirse todos los archivos nuevos dentro de `assets/`, `scenes/`, `scripts/`, además de `project.godot`, `Readme.md` y `.project_context.md`.
+
+## Exportacion Android
+
+1. Instalar las plantillas de exportacion de Godot 4.7.2 desde `Editor > Manage Export Templates`.
+2. Configurar JDK 17 y Android SDK en `Editor Settings > Export > Android`.
+3. Abrir `Proyecto > Exportar`, agregar un preset Android y definir un identificador unico, por ejemplo `com.goldendogs.game`.
+4. Exportar un APK de depuracion para probar o un APK/AAB firmado para distribuir.
+5. Verificar en un telefono real la orientacion horizontal, botones tactiles, audio, textos largos, scroll y rendimiento.
+
+El proyecto ya fuerza orientación horizontal, conserva el aspecto 16:9 y permite usar botones normales de UI mediante entrada táctil. `export_presets.cfg` se genera desde el editor al crear el preset Android y puede variar según el SDK o firma de cada computadora.
 
 ## Contexto Para IA
 

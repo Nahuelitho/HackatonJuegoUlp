@@ -1,110 +1,209 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene format=3 uid="uid://bc7i1axjaw6hv"]
 
-[ext_resource type="Script" path="res://scripts/guia_mapa.gd" id="1_guia"]
+[ext_resource type="Script" uid="uid://j142ehf0h2oa" path="res://scripts/guia_mapa.gd" id="1_guia"]
 [ext_resource type="PackedScene" path="res://scenes/borde_arena_irrompible.tscn" id="2_borde"]
 [ext_resource type="PackedScene" path="res://scenes/muro_ladrillo.tscn" id="3_ladrillo"]
 [ext_resource type="PackedScene" path="res://scenes/muro_acero.tscn" id="4_acero"]
 [ext_resource type="PackedScene" path="res://scenes/muro_ladrillo_medio.tscn" id="5_medio"]
 [ext_resource type="PackedScene" path="res://scenes/agua.tscn" id="6_agua"]
 [ext_resource type="PackedScene" path="res://scenes/pasto.tscn" id="7_pasto"]
-[ext_resource type="Script" path="res://scripts/paleta_mapa.gd" id="8_paleta"]
+[ext_resource type="Script" uid="uid://rrth358s6utl" path="res://scripts/paleta_mapa.gd" id="8_paleta"]
 [ext_resource type="PackedScene" path="res://scenes/muro_ladrillo_danado.tscn" id="9_danado"]
 [ext_resource type="PackedScene" path="res://scenes/muro_acero_medio_irrompible.tscn" id="10_acero_medio"]
 
-[node name="MapaNivelMedio" type="Node2D"]
+[node name="MapaNivelMedio" type="Node2D" unique_id=726618233]
 
-[node name="GuiaEditor" type="Node2D" parent="."]
+[node name="GuiaEditor" type="Node2D" parent="." unique_id=1848147563]
 z_index = -100
 script = ExtResource("1_guia")
 
-[node name="BordeIrrompible" parent="." instance=ExtResource("2_borde")]
+[node name="BordeIrrompible" parent="." unique_id=27910809 instance=ExtResource("2_borde")]
 
-[node name="Ladrillo01" parent="." instance=ExtResource("3_ladrillo")]
-position = Vector2(472, 232)
-[node name="Ladrillo02" parent="." instance=ExtResource("3_ladrillo")]
+[node name="Ladrillo01" parent="." unique_id=705546369 instance=ExtResource("3_ladrillo")]
+position = Vector2(416, 376)
+
+[node name="Ladrillo12" parent="." unique_id=1059241332 instance=ExtResource("3_ladrillo")]
+position = Vector2(416, 328)
+
+[node name="Ladrillo02" parent="." unique_id=1048327843 instance=ExtResource("3_ladrillo")]
 position = Vector2(520, 232)
-[node name="Ladrillo03" parent="." instance=ExtResource("3_ladrillo")]
-position = Vector2(760, 232)
-[node name="Ladrillo04" parent="." instance=ExtResource("3_ladrillo")]
-position = Vector2(808, 232)
-[node name="Ladrillo05" parent="." instance=ExtResource("3_ladrillo")]
-position = Vector2(472, 424)
-[node name="Ladrillo06" parent="." instance=ExtResource("3_ladrillo")]
-position = Vector2(520, 424)
-[node name="Ladrillo07" parent="." instance=ExtResource("3_ladrillo")]
-position = Vector2(760, 424)
-[node name="Ladrillo08" parent="." instance=ExtResource("3_ladrillo")]
-position = Vector2(808, 424)
-[node name="Acero01" parent="." instance=ExtResource("4_acero")]
-position = Vector2(616, 329)
-[node name="Acero02" parent="." instance=ExtResource("4_acero")]
-position = Vector2(664, 329)
-[node name="Agua01" parent="." instance=ExtResource("6_agua")]
-position = Vector2(424, 328)
-[node name="Agua02" parent="." instance=ExtResource("6_agua")]
-position = Vector2(856, 328)
-[node name="Pasto01" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(636, 413)
-[node name="Pasto02" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(472, 280)
-[node name="Agua03" parent="." instance=ExtResource("6_agua")]
-position = Vector2(473, 328)
-[node name="Agua04" parent="." instance=ExtResource("6_agua")]
-position = Vector2(809, 328)
-[node name="Pasto03" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(426, 280)
-[node name="Pasto04" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(378, 280)
-[node name="Pasto05" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(356, 279)
-[node name="Pasto06" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(520, 280)
-[node name="Pasto07" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(568, 280)
-[node name="Pasto08" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(616, 280)
-[node name="Pasto09" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(664, 280)
-[node name="Pasto10" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(712, 280)
-[node name="Pasto11" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(760, 280)
-[node name="Pasto12" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(807, 280)
-[node name="Pasto13" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(855, 280)
-[node name="Pasto14" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(903, 280)
-[node name="Pasto15" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(924, 281)
-[node name="RefugioSuperior01" parent="." instance=ExtResource("5_medio")]
-position = Vector2(596, 607)
-rotation = 1.5707963
-[node name="RefugioSuperior02" parent="." instance=ExtResource("5_medio")]
-position = Vector2(645, 607)
-rotation = 1.5707963
-[node name="RefugioSuperior03" parent="." instance=ExtResource("5_medio")]
-position = Vector2(681, 607)
-rotation = 1.5707963
-[node name="RefugioIzquierdo" parent="." instance=ExtResource("5_medio")]
-position = Vector2(584, 643)
-[node name="RefugioDerecho" parent="." instance=ExtResource("5_medio")]
-position = Vector2(693, 644)
 
-[node name="PiezasParaEditar" type="Node2D" parent="."]
+[node name="Ladrillo13" parent="." unique_id=1470103195 instance=ExtResource("3_ladrillo")]
+position = Vector2(568, 232)
+
+[node name="Ladrillo03" parent="." unique_id=744489452 instance=ExtResource("3_ladrillo")]
+position = Vector2(760, 232)
+
+[node name="Ladrillo04" parent="." unique_id=473097393 instance=ExtResource("3_ladrillo")]
+position = Vector2(712, 232)
+
+[node name="Ladrillo10" parent="." unique_id=894759420 instance=ExtResource("3_ladrillo")]
+position = Vector2(864, 328)
+
+[node name="Ladrillo11" parent="." unique_id=1498909196 instance=ExtResource("3_ladrillo")]
+position = Vector2(864, 376)
+
+[node name="Ladrillo05" parent="." unique_id=770825983 instance=ExtResource("3_ladrillo")]
+position = Vector2(568, 424)
+
+[node name="Ladrillo06" parent="." unique_id=1650473967 instance=ExtResource("3_ladrillo")]
+position = Vector2(520, 424)
+
+[node name="Ladrillo07" parent="." unique_id=1367991330 instance=ExtResource("3_ladrillo")]
+position = Vector2(760, 424)
+
+[node name="Ladrillo08" parent="." unique_id=493737790 instance=ExtResource("3_ladrillo")]
+position = Vector2(712, 424)
+
+[node name="Ladrillo14" parent="." unique_id=1093549701 instance=ExtResource("3_ladrillo")]
+position = Vector2(664, 472)
+
+[node name="Ladrillo15" parent="." unique_id=1787879837 instance=ExtResource("3_ladrillo")]
+position = Vector2(616, 472)
+
+[node name="LadrilloDanado2" parent="." unique_id=1480441505 instance=ExtResource("9_danado")]
+position = Vector2(912, 232)
+
+[node name="LadrilloDanado5" parent="." unique_id=62885551 instance=ExtResource("9_danado")]
+position = Vector2(760, 184)
+
+[node name="LadrilloDanado6" parent="." unique_id=1108783475 instance=ExtResource("9_danado")]
+position = Vector2(808, 184)
+
+[node name="LadrilloDanado8" parent="." unique_id=368672150 instance=ExtResource("9_danado")]
+position = Vector2(472, 184)
+
+[node name="LadrilloDanado7" parent="." unique_id=1336188564 instance=ExtResource("9_danado")]
+position = Vector2(520, 184)
+
+[node name="LadrilloDanado3" parent="." unique_id=226420488 instance=ExtResource("9_danado")]
+position = Vector2(368, 232)
+
+[node name="Acero01" parent="." unique_id=1325041352 instance=ExtResource("4_acero")]
+position = Vector2(616, 328)
+
+[node name="Acero03" parent="." unique_id=1273555892 instance=ExtResource("4_acero")]
+position = Vector2(808, 520)
+
+[node name="Acero07" parent="." unique_id=1368419343 instance=ExtResource("4_acero")]
+position = Vector2(864, 280)
+
+[node name="Acero04" parent="." unique_id=526330782 instance=ExtResource("4_acero")]
+position = Vector2(760, 520)
+
+[node name="Acero05" parent="." unique_id=1747030656 instance=ExtResource("4_acero")]
+position = Vector2(520, 520)
+
+[node name="Acero5" parent="." unique_id=168527029 instance=ExtResource("4_acero")]
+position = Vector2(416, 280)
+
+[node name="Acero06" parent="." unique_id=1781554006 instance=ExtResource("4_acero")]
+position = Vector2(472, 520)
+
+[node name="Acero02" parent="." unique_id=1250879886 instance=ExtResource("4_acero")]
+position = Vector2(664, 328)
+
+[node name="Agua01" parent="." unique_id=1956071481 instance=ExtResource("6_agua")]
+position = Vector2(368, 328)
+
+[node name="Agua05" parent="." unique_id=265609653 instance=ExtResource("6_agua")]
+position = Vector2(368, 280)
+
+[node name="Agua02" parent="." unique_id=2134479968 instance=ExtResource("6_agua")]
+position = Vector2(912, 280)
+
+[node name="Agua06" parent="." unique_id=1194897770 instance=ExtResource("6_agua")]
+position = Vector2(912, 328)
+
+[node name="Pasto01" parent="." unique_id=466040845 instance=ExtResource("7_pasto")]
+position = Vector2(664, 376)
+
+[node name="Pasto02" parent="." unique_id=1887414777 instance=ExtResource("7_pasto")]
+position = Vector2(616, 376)
+
+[node name="Agua03" parent="." unique_id=702696576 instance=ExtResource("6_agua")]
+position = Vector2(368, 376)
+
+[node name="Agua04" parent="." unique_id=525835672 instance=ExtResource("6_agua")]
+position = Vector2(912, 376)
+
+[node name="Pasto03" parent="." unique_id=774719954 instance=ExtResource("7_pasto")]
+position = Vector2(664, 424)
+
+[node name="Pasto04" parent="." unique_id=1167793993 instance=ExtResource("7_pasto")]
+position = Vector2(568, 328)
+
+[node name="Pasto05" parent="." unique_id=1538128041 instance=ExtResource("7_pasto")]
+position = Vector2(616, 424)
+
+[node name="Pasto06" parent="." unique_id=1614616634 instance=ExtResource("7_pasto")]
+position = Vector2(568, 376)
+
+[node name="Pasto07" parent="." unique_id=199159566 instance=ExtResource("7_pasto")]
+position = Vector2(568, 280)
+
+[node name="Pasto08" parent="." unique_id=1205809949 instance=ExtResource("7_pasto")]
+position = Vector2(616, 280)
+
+[node name="Pasto09" parent="." unique_id=526121110 instance=ExtResource("7_pasto")]
+position = Vector2(664, 280)
+
+[node name="Pasto10" parent="." unique_id=1091587781 instance=ExtResource("7_pasto")]
+position = Vector2(712, 280)
+
+[node name="Pasto11" parent="." unique_id=1352009342 instance=ExtResource("7_pasto")]
+position = Vector2(712, 328)
+
+[node name="Pasto12" parent="." unique_id=1033442067 instance=ExtResource("7_pasto")]
+position = Vector2(712, 376)
+
+[node name="Pasto13" parent="." unique_id=1892078807 instance=ExtResource("7_pasto")]
+position = Vector2(616, 232)
+
+[node name="Pasto14" parent="." unique_id=421158045 instance=ExtResource("7_pasto")]
+position = Vector2(664, 232)
+
+[node name="RefugioSuperior01" parent="." unique_id=2145355528 instance=ExtResource("5_medio")]
+position = Vector2(597, 596)
+rotation = 1.5707963
+
+[node name="RefugioSuperior02" parent="." unique_id=1502104000 instance=ExtResource("5_medio")]
+position = Vector2(643, 596)
+rotation = 1.5707963
+
+[node name="RefugioSuperior03" parent="." unique_id=1608218689 instance=ExtResource("5_medio")]
+position = Vector2(681, 596)
+rotation = 1.5707963
+
+[node name="RefugioIzquierdo" parent="." unique_id=1525431946 instance=ExtResource("5_medio")]
+position = Vector2(585, 632)
+
+[node name="RefugioDerecho" parent="." unique_id=1941481510 instance=ExtResource("5_medio")]
+position = Vector2(693, 632)
+
+[node name="PiezasParaEditar" type="Node2D" parent="." unique_id=2041033911]
 script = ExtResource("8_paleta")
 
-[node name="Ladrillo" parent="PiezasParaEditar" instance=ExtResource("3_ladrillo")]
-position = Vector2(1030, 120)
-[node name="LadrilloDanado" parent="PiezasParaEditar" instance=ExtResource("9_danado")]
-position = Vector2(1090, 120)
-[node name="MedioLadrillo" parent="PiezasParaEditar" instance=ExtResource("5_medio")]
+[node name="Ladrillo" parent="PiezasParaEditar" unique_id=633258971 instance=ExtResource("3_ladrillo")]
+position = Vector2(1010, 121)
+
+[node name="LadrilloDanado4" parent="PiezasParaEditar" unique_id=1071932781 instance=ExtResource("9_danado")]
+position = Vector2(1027, 322)
+
+[node name="MedioLadrillo" parent="PiezasParaEditar" unique_id=1691554407 instance=ExtResource("5_medio")]
 position = Vector2(1150, 120)
-[node name="Acero" parent="PiezasParaEditar" instance=ExtResource("4_acero")]
-position = Vector2(1030, 190)
-[node name="MedioAceroIrrompible" parent="PiezasParaEditar" instance=ExtResource("10_acero_medio")]
+
+[node name="MedioAceroIrrompible" parent="PiezasParaEditar" unique_id=413635309 instance=ExtResource("10_acero_medio")]
 position = Vector2(1090, 190)
-[node name="Agua" parent="PiezasParaEditar" instance=ExtResource("6_agua")]
-position = Vector2(1030, 260)
-[node name="Pasto" parent="PiezasParaEditar" instance=ExtResource("7_pasto")]
+
+[node name="MedioAceroIrrompible3" parent="PiezasParaEditar" unique_id=969845158 instance=ExtResource("10_acero_medio")]
+position = Vector2(1090, 190)
+
+[node name="MedioAceroIrrompible2" parent="PiezasParaEditar" unique_id=1949638735 instance=ExtResource("10_acero_medio")]
+position = Vector2(936, 52)
+
+[node name="Agua" parent="PiezasParaEditar" unique_id=1654914215 instance=ExtResource("6_agua")]
+position = Vector2(1026, 260)
+
+[node name="Pasto" parent="PiezasParaEditar" unique_id=1607326761 instance=ExtResource("7_pasto")]
 position = Vector2(1090, 260)

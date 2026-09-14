@@ -1,81 +1,254 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene format=3 uid="uid://bum18sqttk100"]
 
-[ext_resource type="Script" path="res://scripts/guia_mapa.gd" id="1_guia"]
+[ext_resource type="Script" uid="uid://j142ehf0h2oa" path="res://scripts/guia_mapa.gd" id="1_guia"]
 [ext_resource type="PackedScene" path="res://scenes/borde_arena_irrompible.tscn" id="2_borde"]
 [ext_resource type="PackedScene" path="res://scenes/muro_ladrillo.tscn" id="3_ladrillo"]
 [ext_resource type="PackedScene" path="res://scenes/muro_acero.tscn" id="4_acero"]
 [ext_resource type="PackedScene" path="res://scenes/muro_ladrillo_medio.tscn" id="5_medio"]
 [ext_resource type="PackedScene" path="res://scenes/agua.tscn" id="6_agua"]
 [ext_resource type="PackedScene" path="res://scenes/pasto.tscn" id="7_pasto"]
-[ext_resource type="Script" path="res://scripts/paleta_mapa.gd" id="8_paleta"]
+[ext_resource type="Script" uid="uid://rrth358s6utl" path="res://scripts/paleta_mapa.gd" id="8_paleta"]
 [ext_resource type="PackedScene" path="res://scenes/muro_ladrillo_danado.tscn" id="9_danado"]
 [ext_resource type="PackedScene" path="res://scenes/muro_acero_medio_irrompible.tscn" id="10_acero_medio"]
 
-[node name="MapaNivelDificil" type="Node2D"]
+[node name="MapaNivelDificil" type="Node2D" unique_id=1534585673]
 
-[node name="GuiaEditor" type="Node2D" parent="."]
+[node name="GuiaEditor" type="Node2D" parent="." unique_id=953166978]
 z_index = -100
 script = ExtResource("1_guia")
 
-[node name="BordeIrrompible" parent="." instance=ExtResource("2_borde")]
+[node name="BordeIrrompible" parent="." unique_id=1637747814 instance=ExtResource("2_borde")]
 
-[node name="AceroCentral01" parent="." instance=ExtResource("4_acero")]
-position = Vector2(592, 304)
-[node name="AceroCentral02" parent="." instance=ExtResource("4_acero")]
-position = Vector2(640, 304)
-[node name="AceroCentral03" parent="." instance=ExtResource("4_acero")]
-position = Vector2(688, 304)
-[node name="Ladrillo01" parent="." instance=ExtResource("3_ladrillo")]
-position = Vector2(448, 208)
-[node name="Ladrillo02" parent="." instance=ExtResource("3_ladrillo")]
-position = Vector2(496, 256)
-[node name="Ladrillo03" parent="." instance=ExtResource("3_ladrillo")]
-position = Vector2(544, 352)
-[node name="Ladrillo04" parent="." instance=ExtResource("3_ladrillo")]
-position = Vector2(736, 352)
-[node name="Ladrillo05" parent="." instance=ExtResource("3_ladrillo")]
-position = Vector2(784, 256)
-[node name="Ladrillo06" parent="." instance=ExtResource("3_ladrillo")]
-position = Vector2(832, 208)
-[node name="Agua01" parent="." instance=ExtResource("6_agua")]
-position = Vector2(448, 400)
-[node name="Agua02" parent="." instance=ExtResource("6_agua")]
-position = Vector2(496, 448)
-[node name="Agua03" parent="." instance=ExtResource("6_agua")]
-position = Vector2(784, 448)
-[node name="Agua04" parent="." instance=ExtResource("6_agua")]
-position = Vector2(832, 400)
-[node name="Pasto01" parent="." instance=ExtResource("7_pasto")]
+[node name="AceroCentral01" parent="." unique_id=1419449637 instance=ExtResource("4_acero")]
+position = Vector2(640, 400)
+
+[node name="AceroCentral02" parent="." unique_id=389821820 instance=ExtResource("4_acero")]
+position = Vector2(544, 256)
+
+[node name="AceroCentral04" parent="." unique_id=1398978033 instance=ExtResource("4_acero")]
+position = Vector2(736, 256)
+
+[node name="Ladrillo01" parent="." unique_id=99152805 instance=ExtResource("3_ladrillo")]
+position = Vector2(368, 256)
+
+[node name="Ladrillo02" parent="." unique_id=747161537 instance=ExtResource("3_ladrillo")]
+position = Vector2(416, 256)
+
+[node name="Ladrillo03" parent="." unique_id=1514667608 instance=ExtResource("3_ladrillo")]
+position = Vector2(544, 400)
+
+[node name="Ladrillo21" parent="." unique_id=1685077687 instance=ExtResource("3_ladrillo")]
+position = Vector2(544, 448)
+
+[node name="Ladrillo07" parent="." unique_id=1334497240 instance=ExtResource("3_ladrillo")]
+position = Vector2(496, 400)
+
+[node name="Ladrillo11" parent="." unique_id=1468017490 instance=ExtResource("3_ladrillo")]
+position = Vector2(368, 544)
+
+[node name="Ladrillo12" parent="." unique_id=1197732905 instance=ExtResource("3_ladrillo")]
+position = Vector2(416, 544)
+
+[node name="Ladrillo08" parent="." unique_id=647692523 instance=ExtResource("3_ladrillo")]
+position = Vector2(448, 352)
+
+[node name="Ladrillo04" parent="." unique_id=2100549535 instance=ExtResource("3_ladrillo")]
+position = Vector2(736, 400)
+
+[node name="Ladrillo22" parent="." unique_id=2002932257 instance=ExtResource("3_ladrillo")]
+position = Vector2(736, 448)
+
+[node name="Ladrillo16" parent="." unique_id=636330419 instance=ExtResource("3_ladrillo")]
+position = Vector2(736, 304)
+
+[node name="Ladrillo18" parent="." unique_id=2076538716 instance=ExtResource("3_ladrillo")]
+position = Vector2(688, 256)
+
+[node name="Ladrillo19" parent="." unique_id=1260904789 instance=ExtResource("3_ladrillo")]
+position = Vector2(640, 256)
+
+[node name="Ladrillo20" parent="." unique_id=859748818 instance=ExtResource("3_ladrillo")]
+position = Vector2(592, 256)
+
+[node name="Ladrillo17" parent="." unique_id=1020204861 instance=ExtResource("3_ladrillo")]
+position = Vector2(544, 304)
+
+[node name="Ladrillo09" parent="." unique_id=1923290435 instance=ExtResource("3_ladrillo")]
+position = Vector2(784, 400)
+
+[node name="Ladrillo13" parent="." unique_id=1851484698 instance=ExtResource("3_ladrillo")]
+position = Vector2(912, 544)
+
+[node name="Ladrillo14" parent="." unique_id=30134551 instance=ExtResource("3_ladrillo")]
+position = Vector2(912, 544)
+
+[node name="Ladrillo15" parent="." unique_id=1598350002 instance=ExtResource("3_ladrillo")]
+position = Vector2(864, 544)
+
+[node name="Ladrillo10" parent="." unique_id=2026334173 instance=ExtResource("3_ladrillo")]
+position = Vector2(832, 352)
+
+[node name="Ladrillo05" parent="." unique_id=159647970 instance=ExtResource("3_ladrillo")]
+position = Vector2(864, 256)
+
+[node name="Ladrillo06" parent="." unique_id=1939279964 instance=ExtResource("3_ladrillo")]
+position = Vector2(912, 256)
+
+[node name="LadrilloDanado2" parent="." unique_id=238443359 instance=ExtResource("9_danado")]
+position = Vector2(592, 208)
+
+[node name="LadrilloDanado6" parent="." unique_id=2060749477 instance=ExtResource("9_danado")]
+position = Vector2(448, 304)
+
+[node name="LadrilloDanado3" parent="." unique_id=316812319 instance=ExtResource("9_danado")]
+position = Vector2(640, 208)
+
+[node name="LadrilloDanado4" parent="." unique_id=1469822576 instance=ExtResource("9_danado")]
+position = Vector2(688, 208)
+
+[node name="LadrilloDanado5" parent="." unique_id=84274341 instance=ExtResource("9_danado")]
+position = Vector2(832, 304)
+
+[node name="LadrilloDanado7" parent="." unique_id=431462955 instance=ExtResource("9_danado")]
+position = Vector2(688, 496)
+
+[node name="LadrilloDanado8" parent="." unique_id=1628519411 instance=ExtResource("9_danado")]
+position = Vector2(640, 496)
+
+[node name="LadrilloDanado10" parent="." unique_id=303137896 instance=ExtResource("9_danado")]
+position = Vector2(556, 632)
+
+[node name="LadrilloDanado11" parent="." unique_id=1350143202 instance=ExtResource("9_danado")]
+position = Vector2(724, 632)
+
+[node name="LadrilloDanado9" parent="." unique_id=1826487721 instance=ExtResource("9_danado")]
+position = Vector2(592, 496)
+
+[node name="Agua01" parent="." unique_id=1041149903 instance=ExtResource("6_agua")]
+position = Vector2(368, 208)
+
+[node name="Agua12" parent="." unique_id=755645149 instance=ExtResource("6_agua")]
+position = Vector2(368, 160)
+
+[node name="Agua05" parent="." unique_id=1955462530 instance=ExtResource("6_agua")]
+position = Vector2(416, 208)
+
+[node name="Agua02" parent="." unique_id=1483134115 instance=ExtResource("6_agua")]
+position = Vector2(368, 448)
+
+[node name="Agua09" parent="." unique_id=887327569 instance=ExtResource("6_agua")]
+position = Vector2(368, 496)
+
+[node name="Agua10" parent="." unique_id=2077595216 instance=ExtResource("6_agua")]
+position = Vector2(416, 496)
+
+[node name="Agua03" parent="." unique_id=1332493380 instance=ExtResource("6_agua")]
+position = Vector2(912, 448)
+
+[node name="Agua07" parent="." unique_id=305006125 instance=ExtResource("6_agua")]
+position = Vector2(912, 496)
+
+[node name="Agua08" parent="." unique_id=1166063426 instance=ExtResource("6_agua")]
+position = Vector2(864, 496)
+
+[node name="Agua04" parent="." unique_id=1460941784 instance=ExtResource("6_agua")]
+position = Vector2(912, 208)
+
+[node name="Agua11" parent="." unique_id=1161832038 instance=ExtResource("6_agua")]
+position = Vector2(912, 160)
+
+[node name="Agua06" parent="." unique_id=954509149 instance=ExtResource("6_agua")]
+position = Vector2(864, 208)
+
+[node name="Pasto01" parent="." unique_id=193156617 instance=ExtResource("7_pasto")]
 position = Vector2(592, 448)
-[node name="Pasto02" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(640, 448)
-[node name="Pasto03" parent="." instance=ExtResource("7_pasto")]
-position = Vector2(688, 448)
-[node name="RefugioSuperior01" parent="." instance=ExtResource("5_medio")]
-position = Vector2(616, 584)
-rotation = 1.5707963
-[node name="RefugioSuperior02" parent="." instance=ExtResource("5_medio")]
-position = Vector2(664, 584)
-rotation = 1.5707963
-[node name="RefugioIzquierdo" parent="." instance=ExtResource("5_medio")]
-position = Vector2(592, 620)
-[node name="RefugioDerecho" parent="." instance=ExtResource("5_medio")]
-position = Vector2(688, 620)
 
-[node name="PiezasParaEditar" type="Node2D" parent="."]
+[node name="Pasto04" parent="." unique_id=1899908458 instance=ExtResource("7_pasto")]
+position = Vector2(592, 400)
+
+[node name="Pasto05" parent="." unique_id=1855177003 instance=ExtResource("7_pasto")]
+position = Vector2(592, 352)
+
+[node name="Pasto09" parent="." unique_id=1468791399 instance=ExtResource("7_pasto")]
+position = Vector2(544, 352)
+
+[node name="Pasto13" parent="." unique_id=95028173 instance=ExtResource("7_pasto")]
+position = Vector2(496, 352)
+
+[node name="Pasto14" parent="." unique_id=1597709629 instance=ExtResource("7_pasto")]
+position = Vector2(496, 304)
+
+[node name="Pasto06" parent="." unique_id=2118472533 instance=ExtResource("7_pasto")]
+position = Vector2(640, 352)
+
+[node name="Pasto15" parent="." unique_id=561916042 instance=ExtResource("7_pasto")]
+position = Vector2(592, 304)
+
+[node name="Pasto16" parent="." unique_id=657699541 instance=ExtResource("7_pasto")]
+position = Vector2(640, 304)
+
+[node name="Pasto17" parent="." unique_id=1694339295 instance=ExtResource("7_pasto")]
+position = Vector2(688, 304)
+
+[node name="Pasto07" parent="." unique_id=945354661 instance=ExtResource("7_pasto")]
+position = Vector2(688, 352)
+
+[node name="Pasto10" parent="." unique_id=549672390 instance=ExtResource("7_pasto")]
+position = Vector2(736, 352)
+
+[node name="Pasto11" parent="." unique_id=1013249451 instance=ExtResource("7_pasto")]
+position = Vector2(784, 352)
+
+[node name="Pasto12" parent="." unique_id=2125120768 instance=ExtResource("7_pasto")]
+position = Vector2(784, 304)
+
+[node name="Pasto08" parent="." unique_id=1646478800 instance=ExtResource("7_pasto")]
+position = Vector2(688, 400)
+
+[node name="Pasto02" parent="." unique_id=1837615144 instance=ExtResource("7_pasto")]
+position = Vector2(640, 448)
+
+[node name="Pasto03" parent="." unique_id=1734040013 instance=ExtResource("7_pasto")]
+position = Vector2(688, 448)
+
+[node name="RefugioSuperior01" parent="." unique_id=1514827089 instance=ExtResource("5_medio")]
+position = Vector2(604, 596)
+rotation = 1.5707963
+
+[node name="RefugioSuperior02" parent="." unique_id=1056260031 instance=ExtResource("5_medio")]
+position = Vector2(676, 596)
+rotation = 1.5707963
+
+[node name="RefugioSuperior03" parent="." unique_id=1867896235 instance=ExtResource("5_medio")]
+position = Vector2(640, 596)
+rotation = 1.5707963
+
+[node name="RefugioIzquierdo" parent="." unique_id=1307847230 instance=ExtResource("5_medio")]
+position = Vector2(592, 632)
+
+[node name="RefugioDerecho" parent="." unique_id=1373565691 instance=ExtResource("5_medio")]
+position = Vector2(688, 632)
+
+[node name="PiezasParaEditar" type="Node2D" parent="." unique_id=1657850221]
 script = ExtResource("8_paleta")
 
-[node name="Ladrillo" parent="PiezasParaEditar" instance=ExtResource("3_ladrillo")]
+[node name="Ladrillo" parent="PiezasParaEditar" unique_id=1479092760 instance=ExtResource("3_ladrillo")]
 position = Vector2(1030, 120)
-[node name="LadrilloDanado" parent="PiezasParaEditar" instance=ExtResource("9_danado")]
+
+[node name="LadrilloDanado" parent="PiezasParaEditar" unique_id=92418153 instance=ExtResource("9_danado")]
 position = Vector2(1090, 120)
-[node name="MedioLadrillo" parent="PiezasParaEditar" instance=ExtResource("5_medio")]
+
+[node name="MedioLadrillo" parent="PiezasParaEditar" unique_id=659738612 instance=ExtResource("5_medio")]
 position = Vector2(1150, 120)
-[node name="Acero" parent="PiezasParaEditar" instance=ExtResource("4_acero")]
+
+[node name="Acero" parent="PiezasParaEditar" unique_id=876527255 instance=ExtResource("4_acero")]
 position = Vector2(1030, 190)
-[node name="MedioAceroIrrompible" parent="PiezasParaEditar" instance=ExtResource("10_acero_medio")]
+
+[node name="MedioAceroIrrompible" parent="PiezasParaEditar" unique_id=1619522221 instance=ExtResource("10_acero_medio")]
 position = Vector2(1090, 190)
-[node name="Agua" parent="PiezasParaEditar" instance=ExtResource("6_agua")]
+
+[node name="Agua" parent="PiezasParaEditar" unique_id=1331588532 instance=ExtResource("6_agua")]
 position = Vector2(1030, 260)
-[node name="Pasto" parent="PiezasParaEditar" instance=ExtResource("7_pasto")]
+
+[node name="Pasto" parent="PiezasParaEditar" unique_id=1317956666 instance=ExtResource("7_pasto")]
 position = Vector2(1090, 260)

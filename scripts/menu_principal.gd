@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _on_iniciar_pressed() -> void:
 	GestorJuego.seleccionar_dificultad(GestorJuego.Dificultad.FACIL)
-	get_tree().change_scene_to_file("res://scenes/cinematica_inicial.tscn")
+	get_tree().change_scene_to_file("res://scenes/introduccion_historia.tscn")
 
 func _on_opciones_pressed() -> void:
 	panel_niveles.visible = false

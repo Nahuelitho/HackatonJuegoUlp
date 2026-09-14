@@ -1,17 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://3ud826ae20j3"]
+[gd_scene format=3 uid="uid://3ud826ae20j3"]
 
 [ext_resource type="PackedScene" uid="uid://cnrgtwq61001v" path="res://scenes/nivel_prueba.tscn" id="1_nivel"]
-[ext_resource type="PackedScene" path="res://scenes/mapa_nivel_medio.tscn" id="2_mapa"]
+[ext_resource type="PackedScene" uid="uid://bc7i1axjaw6hv" path="res://scenes/mapa_nivel_medio.tscn" id="2_mapa"]
 
-[node name="NivelMedio" instance=ExtResource("1_nivel")]
+[node name="NivelMedio" unique_id=684989493 instance=ExtResource("1_nivel")]
 dificultad_nivel = 1
 
-[node name="Muros" parent="."]
+[node name="Muros" parent="." index="8" unique_id=1667000559]
 visible = false
 
-[node name="BaseAguila" parent="."]
+[node name="BaseAguila" parent="." index="10" unique_id=525045912]
 position = Vector2(640, 648)
 
-[node name="VistaMapa" parent="." instance=ExtResource("2_mapa")]
+[node name="VistaMapa" parent="." index="15" unique_id=1614386327 instance=ExtResource("2_mapa")]
 
+[editable path="Muros"]
 [editable path="VistaMapa"]

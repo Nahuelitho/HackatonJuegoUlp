@@ -30,7 +30,7 @@ font_size = 24
 font_color = Color(0.95, 0.95, 0.95, 1)
 
 [sub_resource type="RectangleShape2D" id="Shape_touch"]
-size = Vector2(82, 82)
+size = Vector2(112, 112)
 
 [sub_resource type="AtlasTexture" id="Atlas_up"]
 atlas = ExtResource("8_up")
@@ -231,7 +231,7 @@ columns = 5
 
 [node name="Cruceta" type="Sprite2D" parent="Interfaz" unique_id=1180999491]
 position = Vector2(160, 520)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.42, 0.42)
 
 [node name="Arriba" type="TouchScreenButton" parent="Interfaz" unique_id=110190149]
 position = Vector2(160, 430)
@@ -324,7 +324,7 @@ action = "disparar"
 visibility_mode = 1
 
 [node name="Fondo" type="Sprite2D" parent="Interfaz/Disparar" unique_id=1203202547]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.27, 0.27)
 texture = ExtResource("12_fire")
 
 [node name="Texto" type="Label" parent="Interfaz/Disparar" unique_id=1188971885]
